@@ -1,8 +1,6 @@
 const router = require('koa-router')();
 const index = require('../controllers/index');
 
-router.get('/', (ctx, next) => {
-	ctx.response.body = 'hello home'
-})
+router.get('/', index)
 
 module.exports = router;

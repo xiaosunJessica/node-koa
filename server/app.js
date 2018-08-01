@@ -1,10 +1,15 @@
 const session = require('koa-session');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
+const views = require('koa-views');
 const app = new Koa();
 // const handle = app.getRequestHandler();
 
 const routers = require('./routers/index');
+
+app.use(views(__dirname + '/views', {
+	extension: 'ejs'
+}))
 
 app.use(bodyParser());
 
