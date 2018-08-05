@@ -1,17 +1,36 @@
+
+const User = require('../services/user');
+
 /**
-* 登录操作
+* 注册操作
 *
 * @param {object} ctx
 */
-const login = async ctx => {
+const signIn = async ctx => {
+  let result = {
+    success: false,
+    message: '登录失败'
+  }
 
+  const formData = ctx.request.body;
+  const { username, password } = formData
+  
+  let userResult = await User.signIn(formData)
+  console.info(userResult, 'controllers---------------')
+
+  if (!(username && password)) {
+    result.message = '请输入用户名和密码';
+    ctx.body = result;
+  } else {
+    ctx.body = userResult
+  }
 };
 
 /**
- * 注册操作
+ * 登录操作
  * @param {object} ctx
  */
-const signIn = async ctx => {
+const login = async ctx => {
 	
 };
 
