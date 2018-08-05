@@ -1,10 +1,26 @@
+
 /**
 * 登录操作
 *
 * @param {object} ctx
 */
 const login = async ctx => {
+  console.info('--------login', ctx.request)
+  let result = {
+    success: false,
+    message: '登录失败'
+  }
 
+  const { username, password } = ctx.request.body;
+
+  console.info(username, password, '----------usename------password')
+  
+  if (!(username && password)) {
+    result.message = '请输入用户名和密码';
+    ctx.body = result;
+  } else {
+
+  }
 };
 
 /**

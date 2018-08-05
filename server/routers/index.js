@@ -6,6 +6,8 @@ const user = require('./user');
 
 router.use('/', home.routes(), home.allowedMethods());
 
+router.use('/home', home.routes(), home.allowedMethods());
+
 router.use('/user', user.routes(), user.allowedMethods());
 
 router.use('/error', error.routes(), error.allowedMethods());
