@@ -1,5 +1,7 @@
 
-const User = require('../services/user');
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+const config = require('../config');
 
 /**
 * 注册操作
@@ -9,20 +11,42 @@ const User = require('../services/user');
 const signIn = async ctx => {
   let result = {
     success: false,
-    message: '登录失败'
+    message: '注册失败'
   }
 
-  const formData = ctx.request.body;
-  const { username, password } = formData
-  
-  let userResult = await User.signIn(formData)
-  console.info(userResult, 'controllers---------------')
+  const { username, password } = ctx.request.body;
 
-  if (!(username && password)) {
+  if (!username || !password) {
     result.message = '请输入用户名和密码';
     ctx.body = result;
   } else {
-    ctx.body = userResult
+    let user = await User.findOne({username});
+    if (!user) {
+      const uModel = new User({ username, password });
+      const doc = await uModel.save();
+      if (!doc.errors) {
+        const userToken = {
+          username,
+          password
+        }
+
+        const token = jwt.sign(userToken, config.secretSign, {expiresIn: '1h'})
+        ctx.body = {
+          success: true,
+          message: '注册成功',
+          bean: {
+            token
+          }
+        }
+      } else {
+        ctx.body = result;
+      }
+    } else {
+      ctx.body = {
+        success: false,
+        message: '用户名已存在'
+      }
+    }
   }
 };
 
@@ -31,7 +55,35 @@ const signIn = async ctx => {
  * @param {object} ctx
  */
 const login = async ctx => {
-	
+  let result = {
+    success: false,
+    message: '登录失败'
+  }
+  const { username, password } = ctx.request.body;
+  await User.findOne({username}, (err, user) => {
+    if (err) {
+      throw err
+    }
+
+    if (!user) {
+      ctx.body = {
+        success: false,
+        message: '用户不存在'
+      }
+    } else {
+      if (password == user.password) {
+        const userToken = {
+          username,
+          password
+        }
+
+        const token = jwt.sign(userToken, config.secretSign, {expiresIn: '1h'})
+        ctx.body = { success: true, message: '登录成功', bean: {token}}
+      } else {
+        ctx.body = { success: false, message: '密码错误'}
+      }
+    }
+  })
 };
 
 /**
@@ -54,12 +106,5 @@ const getUserInfo = async ctx => {
 	ctx.body = result;
 };
 
-/**
- * 校验登录
- * @param {object} ctx
- */
-const validateLogin = async ctx => {
-	
-}
 
 module.exports = { login, signIn, getUserInfo }

@@ -5,6 +5,8 @@ const views = require('koa-views');
 const jwt = require('koa-jwt');
 const mongoose = require('mongoose');
 const app = new Koa();
+const config = require('./config');
+const cors = require('koa2-cors');
 // const handle = app.getRequestHandler();
 
 const routers = require('./routers/index');
@@ -13,9 +15,11 @@ app.use(views(__dirname + '/views', {
 	extension: 'ejs'
 }));
 
+app.use(cors())
+
 app.use(bodyParser());
 
-app.use(jwt({ secret: 'shared-secret', passthrough: true }));
+app.use(jwt({ secret: config.secretSign }).unless({path: [/^\/user\/login/, /^\/signIn/]}));
 
 //初始化路由中间件
 app.use(routers.routes()).use(routers.allowedMethods);
