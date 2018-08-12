@@ -1,5 +1,7 @@
 
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+const config = require('../config');
 
 /**
 * 注册操作
@@ -13,7 +15,6 @@ const signIn = async ctx => {
   }
 
   const { username, password } = ctx.request.body;
-  console.info(username, password, ctx)
 
   if (!username || !password) {
     result.message = '请输入用户名和密码';
@@ -24,9 +25,18 @@ const signIn = async ctx => {
       const uModel = new User({ username, password });
       const doc = await uModel.save();
       if (!doc.errors) {
+        const userToken = {
+          username,
+          password
+        }
+
+        const token = jwt.sign(userToken, config.secretSign, {expiresIn: '1h'})
         ctx.body = {
           success: true,
-          message: '注册成功'
+          message: '注册成功',
+          bean: {
+            token
+          }
         }
       } else {
         ctx.body = result;
@@ -62,7 +72,13 @@ const login = async ctx => {
       }
     } else {
       if (password == user.password) {
-        ctx.body = { success: true, message: '登录成功' }
+        const userToken = {
+          username,
+          password
+        }
+
+        const token = jwt.sign(userToken, config.secretSign, {expiresIn: '1h'})
+        ctx.body = { success: true, message: '登录成功', bean: {token}}
       } else {
         ctx.body = { success: false, message: '密码错误'}
       }
