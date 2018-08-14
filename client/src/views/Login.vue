@@ -1,12 +1,12 @@
 <template>
-  <div class="hello">
+  <div class="container">
     <h1>{{ msg }}</h1>
-    <el-form :model="ruleForm" ref="ruleForm" label-width="100px">
-      <el-form-item label="用户名" prop="username">
-        <el-input v-model="ruleForm.username"></el-input>
+    <el-form :model="ruleForm" ref="ruleForm" label-width="60px">
+      <el-form-item label="用户名" class="username" prop="username">
+        <el-input class="input-username" v-model="ruleForm.username"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="ruleForm.password"></el-input>
+        <el-input v-model="ruleForm.password" type="password"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="login('ruleForm')">登录</el-button>
@@ -47,6 +47,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.container {
+	width: 320px;
+	height: 370px;
+	margin: 0 auto;
+	padding: 20px;
+	background: #FFFFFF;
+}
+
+.username:focus-within .input-username {
+	border-color: red;
+} 
+
 h3 {
   margin: 40px 0 0;
 }

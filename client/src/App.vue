@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Login msg="koa-node 登录"/>
+    <img alt="Vue logo" src="https://b-gold-cdn.xitu.io/v3/static/img/normal.0447fe9.png">
+    <Login msg="登录"/>
   </div>
 </template>
 
@@ -24,5 +24,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+	background: rgba(0, 0, 0, .3);
+	height: 100vh;
+	width: 100vw;
 }
 </style>
