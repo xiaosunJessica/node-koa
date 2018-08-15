@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="https://b-gold-cdn.xitu.io/v3/static/img/normal.0447fe9.png">
     <Login msg="登录"/>
   </div>
 </template>
@@ -23,8 +22,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-	background: rgba(0, 0, 0, .3);
+	background: url(./assets/background-min.jpeg);
 	height: 100vh;
 	width: 100vw;
 }
