@@ -17,9 +17,23 @@ const router = new Router({
     {
       path: '/user',
       name: 'User',
-      component: User
+      component: User,
+      meta: { requiresAuth: true }
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    const bear = window.localStorage.getItem('bear');
+    if (!bear) {
+      next('/login')
+    } else {
+      Vue.prototype.$http.detaults.headers.common['Authorization'] = 'Bearer ' + bear
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
