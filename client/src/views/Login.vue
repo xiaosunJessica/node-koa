@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <img alt="Vue logo" src="https://b-gold-cdn.xitu.io/v3/static/img/normal.0447fe9.png">
     <h1>{{ msg }}</h1>
     <el-form :model="ruleForm" ref="ruleForm" label-width="60px">
       <el-form-item label="用户名" class="username" prop="username">
@@ -18,7 +19,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Login',
   data: () => {
     return {
       ruleForm: {
@@ -32,9 +33,12 @@ export default {
   },
   methods:{
     login(){
-     this.$http.post('http://localhost:3000/user/login', {
+      this.$http.post('http://localhost:3000/user/login', {
        username: this.ruleForm.username,
        password: this.ruleForm.password
+     }).then(res => {
+       window.localStorage.setItem(`bear`, res.token);
+       this.$router.push({ path: 'user' })
      })
     },
     register(formName) {

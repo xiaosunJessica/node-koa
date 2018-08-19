@@ -19,7 +19,7 @@ app.use(cors())
 
 app.use(bodyParser());
 
-app.use(jwt({ secret: config.secretSign }).unless({path: [/^\/user\/login/, /^\/signIn/]}));
+app.use(jwt({ secret: config.secretSign }).unless({path: [/^\/user\/login/, /^\/user\/signIn/]}));
 
 //初始化路由中间件
 app.use(routers.routes()).use(routers.allowedMethods);
