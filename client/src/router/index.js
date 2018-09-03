@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 import User from '../views/user';
 import Login from '../views/Login';
+import Home from '../views/Home';
 
 
 Vue.use(Router)
@@ -13,6 +14,11 @@ const router = new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    }, 
+    {
+      path: '/home',
+      name: 'home',
+      component: Home
     },
     {
       path: '/user',
@@ -29,7 +35,8 @@ router.beforeEach((to, from, next) => {
     if (!bear) {
       next('/login')
     } else {
-      Vue.prototype.$http.detaults.headers.common['Authorization'] = 'Bearer ' + bear
+      Vue.prototype.$http.defaults.headers.common['Authorization'] = 'Bearer ' + bear;
+      next();
     }
   } else {
     next()

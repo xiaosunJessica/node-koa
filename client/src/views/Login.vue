@@ -37,13 +37,12 @@ export default {
        username: this.ruleForm.username,
        password: this.ruleForm.password
      }).then(res => {
-       window.localStorage.setItem(`bear`, res.token);
-       this.$router.push({ path: 'user' })
+       window.localStorage.setItem(`bear`, res.data.token);
+       this.$router.push('/user')
      })
     },
-    register(formName) {
-      console.info(this.$refs[formName])
-      console.info(this.ruleForm)
+    register() {
+    
     },
   }
 }
