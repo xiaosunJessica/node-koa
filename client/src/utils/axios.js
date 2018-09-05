@@ -8,6 +8,7 @@
  */
 
 import axios from 'axios'
+import { Message } from 'element-ui';
 
 const configs = {
    baseURL: '/',
@@ -15,52 +16,26 @@ const configs = {
 }
 
 
-const request = axios.create({
+const _axios = axios.create({
   baseURL: configs.baseURL,
   timeout: configs.timeout
 })
 
 // //添加请求拦截器
-axios.interceptors.request.use(config => config, error => {
+_axios.interceptors.request.use(config => config, error => {
   return Promise.reject(error)
 })
 
 // //添加响应拦截器
-axios.interceptors.response.use(res => {
+_axios.interceptors.response.use(res => {
+	const success = res.data.success;
+	if (!success) {
+		Message.error(res.data.message)
+	}
   return res
 }, error => {
   return Promise.reject(error)
 })
 
-// const request = {
-// 	get: (url) => {
-// 		return new Promise(function(resolve, reject){
-// 			axios.get(url).then(res => {
-// 				const { data } = res
-// 				if (data.success) {
-// 					resolve(data)
-// 					return
-// 				}
-// 				Message.error(data.message)
-// 			}).catch(e => {
-//         reject(e)
-//       })
-// 		})
-// 	},
-// 	post: (url, data) => {
-// 		return new Promise(function(resolve, reject){
-// 			axios.post(url, data).then(res => {
-// 				const { data } = res;
-// 				if(data.success) {
-// 					resolve(data);
-// 					return 
-// 				}
-// 				Message.error(data.message)
-// 			}).catch(e => {
-//         reject(e)
-//       })
-// 		})
-// 	}
-// }
 
-export default request
+export default _axios

@@ -1,8 +1,11 @@
 <template>
   <div class="container">
-    user
+		<i class="iconfont icon-menu" />
   </div>
 </template>
 
 <script>
+	export default {
+		name: 'User'
+	}
 </script>

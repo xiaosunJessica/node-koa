@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <img alt="Vue logo" src="https://b-gold-cdn.xitu.io/v3/static/img/normal.0447fe9.png">
     <h1>{{ msg }}</h1>
 		<div class="panda" />
     <el-form :model="ruleForm" ref="ruleForm" label-width="60px">
@@ -43,8 +42,10 @@ export default {
        username: this.ruleForm.username,
        password: this.ruleForm.password
      }).then(res => {
-       window.localStorage.setItem(`bear`, res.data.token);
-       this.$router.push('/user')
+			 if (res.data.success) {
+				 window.localStorage.setItem(`bear`, res.data.token);
+				 this.$router.push('/user')
+			 }
      })
     },
     register() {

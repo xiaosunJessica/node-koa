@@ -31,8 +31,8 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    const bear = window.localStorage.getItem('bear');
-    if (!bear) {
+		const bear = window.localStorage.getItem('bear');
+    if (!bear || bear === 'undefined') {
       next('/login')
     } else {
       Vue.prototype.$http.defaults.headers.common['Authorization'] = 'Bearer ' + bear;
