@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.6",
+    "font-carrier": "0.0.12",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },
@@ -28,8 +29,7 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {
-    },
+    "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
     }

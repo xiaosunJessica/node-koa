@@ -4,6 +4,9 @@ import Router from 'vue-router';
 import User from '../views/user';
 import Login from '../views/Login';
 import Home from '../views/Home';
+import Manage from '../views/manage';
+import AddProject from '../views/manage/add';
+import ListProject from '../views/manage/list';
 
 
 Vue.use(Router)
@@ -25,6 +28,22 @@ const router = new Router({
       name: 'User',
       component: User,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/manage',
+      name: 'Manage',
+      component: Manage,
+			meta: { requiresAuth: true },
+			children: [
+				{
+					path: 'add',
+					component: AddProject,
+				},
+				{
+					path: 'list',
+					component: ListProject,
+				}
+			]
     }
   ]
 })

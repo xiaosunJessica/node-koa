@@ -7,6 +7,12 @@
 						<i class="iconfont icon-menu" />
 						<i>MENU</i>
 					</li>
+					<li>
+						<router-link to="/manage">管理</router-link>
+					</li>
+					<li>
+						<router-link to="/list">列表</router-link>
+					</li>
 					<li @click="logout">
 						<i>退出</i>
 					</li>
@@ -37,6 +43,7 @@
 			},
 			logout() {
 				localStorage.clear();
+				this.$router.push('/login')
 			}
 		}
 	}
