@@ -8,7 +8,7 @@
 						<i>MENU</i>
 					</li>
 					<li>
-						<router-link to="/manage">管理</router-link>
+						<router-link to="/manage/list">管理</router-link>
 					</li>
 					<li>
 						<router-link to="/list">列表</router-link>

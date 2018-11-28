@@ -32,7 +32,7 @@ _axios.interceptors.response.use(res => {
 	if (!success) {
 		Message.error(res.data.message)
 	}
-  return res
+  return res.data;
 }, error => {
   return Promise.reject(error)
 })

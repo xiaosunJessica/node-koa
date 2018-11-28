@@ -28,8 +28,8 @@ export default {
   data: () => {
     return {
       ruleForm: {
-        username: '1',
-        password: '123'
+        username: '',
+        password: ''
       }
     }
   },
@@ -42,8 +42,8 @@ export default {
        username: this.ruleForm.username,
        password: this.ruleForm.password
      }).then(res => {
-       if (res.data.success) {
-         window.localStorage.setItem(`bear`, res.data.token);
+       if (res.success) {
+         window.localStorage.setItem(`bear`, res.token);
          this.$router.push('/user')
        }
      })
