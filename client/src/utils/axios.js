@@ -11,7 +11,7 @@ import axios from 'axios'
 import { Message } from 'element-ui';
 
 const configs = {
-   baseURL: '/',
+   baseURL: 'http://localhost:3000',
    timeout: 10000,
 }
 
