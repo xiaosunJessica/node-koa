@@ -54,6 +54,12 @@
 </script>
 
 <style lang="scss" scoped>
+	.el-header {
+		vertical-align: middle;
+		font-size: 32px;
+		box-shadow: 0px 0px 12px #eeeeee;
+		margin-bottom: 10px;
+	}
   .content {
     width: 640px;
   }
