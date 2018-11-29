@@ -4,6 +4,11 @@
     <el-table-column prop="date" label="日期" :formatter="dateFormat"></el-table-column>
     <el-table-column prop="user" label="创建人"></el-table-column>
     <el-table-column prop="name" label="项目名称"></el-table-column>
+    <el-table-column label="操作">
+			<template slot-scope="scope">
+				<el-button @click="onDeleteItem(scope.row)" type="text">删除</el-button>
+			</template>
+		</el-table-column>
   </el-table>
 </template>
 
@@ -16,9 +21,11 @@
     },
     mounted() {
       this.$http.get('/project/list', {
-        size: 10,
-        current: 1
-      }).then(res => {
+				params: {
+					size: 10,
+					current: 1
+				}
+			}).then(res => {
         this.tableData = res.data;
       })
     },
@@ -27,7 +34,14 @@
         let date = Number(row[column.property]);
         if (!date) return "";
         return this.$moment(date).format("YYYY-MM-DD HH:mm:ss");
-      }
+			},
+			onDeleteItem: function(row) {
+				this.$http.delete('/project/delete', {
+					params: {
+						id: row._id
+					}
+				})
+			}
     }
   }
 </script>

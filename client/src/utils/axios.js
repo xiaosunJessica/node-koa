@@ -22,18 +22,24 @@ const _axios = axios.create({
 })
 
 // //添加请求拦截器
-_axios.interceptors.request.use(config => config, error => {
+_axios.interceptors.request.use(config => {
+	console.info(config, '-----config')
+	return config
+}, error => {
   return Promise.reject(error)
 })
 
 // //添加响应拦截器
 _axios.interceptors.response.use(res => {
 	const success = res.data.success;
+	console.info('-----res', res)
 	if (!success) {
 		Message.error(res.data.message)
 	}
   return res.data;
 }, error => {
+	console.info('-----error', error)
+
   return Promise.reject(error)
 })
 

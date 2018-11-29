@@ -30,7 +30,11 @@
           if (valid) {
             this.$http.post('/project/add', {
               name: this.ruleForm.name,
-            })
+            }).then(res => {
+							if (res.success) {
+								this.$router.push('/manage/list');
+							}
+						})
           } else {
             return false
           }
