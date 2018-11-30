@@ -14,7 +14,7 @@
 			</header>
 			<div class="wrapper">
 				<div class="image">
-					<p class="welcome">Welcome to study node + koa + vue</p>
+					<p class="welcome">Welcome to study node + koa + mongo + vue</p>
 				</div>
 			</div>
 		</main>

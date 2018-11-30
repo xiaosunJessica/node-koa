@@ -59,6 +59,25 @@ const deleteProject = async ctx => {
 	const data = await Project.deleteOne({_id: `${id}`});
   ctx.body = result;
 }
+/**
+ * 编辑项目
+ */
+const editProject = async ctx => {
+  let result = {
+    success: false,
+    message: '',
+    data: null
+  }
+	const { id, name } = ctx.request.body;
+	const data = await Project.update({
+		_id: `${id}`,
+		name
+	});
+	if (data.ok) {
+		result.success = true;
+	}
+  ctx.body = result;
+}
 
 /**
  * 项目列表
@@ -77,10 +96,24 @@ const list = async ctx => {
   ctx.body = result;
 }
 
+const detail = async ctx => {
+	const { id } = ctx.request.query;
+	let result = {
+    success: false,
+    message: '',
+    data: null
+	}
+	result.data = await Project.find({
+		_id: `${id}`
+	})
+	result.success = true;
+  ctx.body = result;
+}
+
 function getJWTPayload(token) {
   // 验证并解析JWT
   return jwt.verify(token.split(' ')[1], config.secretSign);
 }
 
 
-module.exports = { addProject, deleteProject, list }
+module.exports = { addProject, deleteProject, list, detail, editProject }
