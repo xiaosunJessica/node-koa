@@ -3,7 +3,7 @@ const errorHandle = async (ctx, next) => {
 		await next();
 	} catch (err) {
 		if (err.status === 401) {
-			// ctx.status = 401;
+			ctx.status = 401;
 			ctx.body = {
 				message: '登录失效',
 				success: false,

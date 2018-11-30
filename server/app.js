@@ -12,10 +12,10 @@ const cors = require('koa2-cors');
 import errorHandle from "./middlewares/error";
 
 const routers = require('./routers/index');
+app.use(errorHandle)
 app.use(views(__dirname + '/views', {
 	extension: 'ejs'
 }));
-app.use(errorHandle)
 app.use(cors())
 app.use(bodyParser());
 app.use(jwt({ secret: config.secretSign }).unless({path: [/^\/user\/login/, /^\/user\/signIn/]}));

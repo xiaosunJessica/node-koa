@@ -13,6 +13,7 @@
 # 登录／注册／退出
 # 增／删／改／查
 # 打包 client -> server
+# authorization失效 -> 中间价
 # 单点登录
 # 测试
 # ssr
