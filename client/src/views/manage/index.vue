@@ -1,6 +1,9 @@
 <template>
   <el-container>
-    <el-header>后台管理</el-header>
+    <el-header>
+			<span>后台管理</span>
+			<router-link class="goBack" to="/home"><i class="el-icon-arrow-left"/>返回</router-link>
+		</el-header>
     <el-container>
       <el-aside width="200px">
         <el-menu>
@@ -55,10 +58,16 @@
 
 <style lang="scss" scoped>
 	.el-header {
-		vertical-align: middle;
+		display: flex;
+    justify-content: space-between;
+    align-items: center;
 		font-size: 32px;
 		box-shadow: 0px 0px 12px #eeeeee;
 		margin-bottom: 10px;
+		.goBack {
+			font-size: 16px;
+			text-decoration: none;
+		}
 	}
   .content {
     width: 640px;

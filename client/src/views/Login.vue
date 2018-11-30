@@ -44,7 +44,7 @@ export default {
      }).then(res => {
        if (res.success) {
          window.localStorage.setItem(`bear`, res.token);
-         this.$router.push('/user')
+         this.$router.push('/home')
        }
      })
     },

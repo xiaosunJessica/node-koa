@@ -1,9 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import User from '../views/user';
 import Login from '../views/Login';
-import Home from '../views/Home';
+import Home from '../views/home';
 import Manage from '../views/manage';
 import AddProject from '../views/manage/add';
 import ListProject from '../views/manage/list';
@@ -22,12 +21,6 @@ const router = new Router({
       path: '/home',
       name: 'home',
       component: Home
-    },
-    {
-      path: '/user',
-      name: 'User',
-      component: User,
-      meta: { requiresAuth: true }
     },
     {
       path: '/manage',
