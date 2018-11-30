@@ -7,7 +7,8 @@
  *    5. 全局的loading和错误处理
  */
 
-import axios from 'axios'
+import axios from 'axios';
+import router from '../router';
 import { Message } from 'element-ui';
 
 const configs = {
@@ -23,7 +24,6 @@ const _axios = axios.create({
 
 // //添加请求拦截器
 _axios.interceptors.request.use(config => {
-	console.info(config, '-----config')
 	return config
 }, error => {
   return Promise.reject(error)
@@ -32,14 +32,16 @@ _axios.interceptors.request.use(config => {
 // //添加响应拦截器
 _axios.interceptors.response.use(res => {
 	const success = res.data.success;
-	console.info('-----res', res)
 	if (!success) {
-		Message.error(res.data.message)
+		Message.error(res.data.message);
+		if (res.data.status === 401) {
+			router.replace({
+				path: '/login'
+			})
+		}
 	}
   return res.data;
 }, error => {
-	console.info('-----error', error)
-
   return Promise.reject(error)
 })
 

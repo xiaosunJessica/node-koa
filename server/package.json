@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+		"start": "babel-node start.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "au  thor": "",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",
@@ -23,5 +24,11 @@
     "koa2-cors": "^2.0.6",
     "mongoose": "^5.2.6",
     "mysql": "^2.16.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
   }
 }

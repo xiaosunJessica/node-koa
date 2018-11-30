@@ -7,9 +7,12 @@ const mongoose = require('mongoose');
 const app = new Koa();
 const config = require('./config');
 const cors = require('koa2-cors');
-// const handle = app.getRequestHandler();
+// import require方式
+// const errorHandle = require("./middlewares/error"); 
+import errorHandle from "./middlewares/error";
 
 const routers = require('./routers/index');
+app.use(errorHandle)
 
 app.use(views(__dirname + '/views', {
 	extension: 'ejs'
