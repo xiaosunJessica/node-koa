@@ -42,6 +42,10 @@ const router = new Router({
 					component: EditProject
 				}
 			]
+    },
+    {
+      path: '/',
+      redirect: '/login'
     }
   ]
 })

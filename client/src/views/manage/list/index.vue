@@ -21,14 +21,7 @@
       }
     },
     mounted() {
-      this.$http.get('/project/list', {
-				params: {
-					size: 10,
-					current: 1
-				}
-			}).then(res => {
-        this.tableData = res.data;
-      })
+     this.onGetList();
     },
     methods: {
       dateFormat: function(row, column){
@@ -44,8 +37,20 @@
 					params: {
 						id: row._id
 					}
-				})
-			}
+				}).then(res =>{
+          this.onGetList();
+        })
+			},
+      onGetList: function() {
+        this.$http.get('/project/list', {
+          params: {
+            size: 10,
+            current: 1
+          }
+        }).then(res => {
+          this.tableData = res.data;
+        })
+      }
     }
   }
 </script>
