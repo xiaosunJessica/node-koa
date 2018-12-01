@@ -57,6 +57,9 @@ const deleteProject = async ctx => {
   }
 	const { id } = ctx.request.query;
 	const data = await Project.deleteOne({_id: `${id}`});
+  if (data.ok) {
+		result.success = true;
+	}
   ctx.body = result;
 }
 /**
