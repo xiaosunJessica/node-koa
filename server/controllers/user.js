@@ -34,9 +34,7 @@ const signIn = async ctx => {
         ctx.body = {
           success: true,
           message: '注册成功',
-          bean: {
-            token
-          }
+          token
         }
       } else {
         ctx.body = result;
@@ -78,7 +76,7 @@ const login = async ctx => {
         }
 
         const token = jwt.sign(userToken, config.secretSign, {expiresIn: '1h'})
-        ctx.body = { success: true, message: '登录成功', bean: {token}}
+        ctx.body = { success: true, message: '登录成功', token}
       } else {
         ctx.body = { success: false, message: '密码错误'}
       }
