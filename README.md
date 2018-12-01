@@ -31,8 +31,8 @@
   8. application/x-www-form-urlencoded与form-data区别
   9. postman: get / post
 
-## 待完成
-   1. 注册功能
+## 待完成(2018.12.1)
+   1. ~~注册功能~~
    2. content-type, get/post等方式发送数据，后台获取参数的方式
    3. jwt 深入学习，以及401怎么返回比较合适
    4. import require学习，写出require中间件的方法

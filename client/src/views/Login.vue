@@ -12,7 +12,7 @@
       <el-form-item>
         <div>
           <span class="forget">忘记密码？</span>
-          <span @click="register('ruleForm')" class="register">注册</span>
+          <router-link to="/register" class="register">注册</router-link>
         </div>
       </el-form-item>
       <el-form-item>

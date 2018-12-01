@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Login from '../views/Login';
+import Register from '../views/Register';
 import Home from '../views/home';
 import Manage from '../views/manage';
 import AddProject from '../views/manage/add';
@@ -17,6 +18,11 @@ const router = new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    }, 
+     {
+      path: '/register',
+      name: 'Register',
+      component: Register
     }, 
     {
       path: '/home',
