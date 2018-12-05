@@ -2,16 +2,19 @@
 const Koa = require('koa');
 const path = require('path');
 const bodyParser = require('koa-bodyparser');
+//koa-bodyparser中间价可以把koa2上下文的数据解析到ctx.request.body中
 const views = require('koa-views');
 const jwt = require('koa-jwt');
 const mongoose = require('mongoose');
 const staticKoa = require('koa-static');
+//koa-static实现访问静态资源文件，如js，png等
 const app = new Koa();
 const config = require('./config');
+// koa2-cors解决跨域的问题
 const cors = require('koa2-cors');
 // import require方式
-// const errorHandle = require("./middlewares/error"); 
-import errorHandle from "./middlewares/error";
+const errorHandle = require("./middlewares/error"); 
+// import errorHandle from "./middlewares/error";
 
 const routers = require('./routers/index');
 app
