@@ -50,12 +50,21 @@
 		commonJS | require(运行) | module.exports
    5. node router学习
    6. 测试
-		前端测试：
+		[前端测试](https://hk.saowen.com/a/e4b066f8c8d0f7164a93e01a8b98a1b26b20743581a8e6c999002c744e1b417f)：
 			a: 安装@vue/cli-plugin-unit-mocha、@vue/test-utils、chai
 			b: eslint屏蔽mocha报错，在eslintConfig中的env添加mocha: true
 			c: 测试默认文件是tests/unit下的*.spec.js
 			
-   7. ssr
+   7. [ssr](https://ssr.vuejs.org/zh/#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E6%B8%B2%E6%9F%93-ssr-%EF%BC%9F)
+
+	 		7.1: 什么是ssr
+			 
+			7.2: 为什么使用ssr
+				a.更好的SEO，由于搜索引擎爬虫抓取工具可以直接查看完全渲染的页面(如果SEO对你的站点比较重要，而页面是通过异步获取，此时选SSR解决)
+				
+				 如果服务端渲染只是简单的为了改善页面的SEO，此时需要采用的是预渲染，无需使用web服务器动态编译HTML，采用预渲染方式，在构建时针对特定路由生成简单的静态HTML文件。设置预渲染更简单，可以将前端作为一个静态站点
+				b.渲染更快（缓慢的网络或缓慢的设备，选SSR解决）
+				
    8. 单点登录
 
  
