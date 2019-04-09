@@ -1,5 +1,8 @@
 # node + koa + mongodb + vue学习
 
+## 启动
+1. 启动数据库mongodb, 进入cd /usr/local/mongodb/bin, sudo ./mongod启动数据库
+2. 进入server目录，node start
 ## 学习点
 ---
 
@@ -62,9 +65,11 @@
 			7.2: 为什么使用ssr
 				a.更好的SEO，由于搜索引擎爬虫抓取工具可以直接查看完全渲染的页面(如果SEO对你的站点比较重要，而页面是通过异步获取，此时选SSR解决)
 				
-				 如果服务端渲染只是简单的为了改善页面的SEO，此时需要采用的是预渲染，无需使用web服务器动态编译HTML，采用预渲染方式，在构建时针对特定路由生成简单的静态HTML文件。设置预渲染更简单，可以将前端作为一个静态站点
+				如果服务端渲染只是简单的为了改善页面的SEO，此时需要采用的是预渲染，无需使用web服务器动态编译HTML，采用预渲染方式，在构建时针对特定路由生成简单的静态HTML文件。设置预渲染更简单，可以将前端作为一个静态站点
+				
 				b.渲染更快（缓慢的网络或缓慢的设备，选SSR解决）
 				
    8. 单点登录
+	 9. oauth2(https://github.com/login/oauth/authorize?client_id=&scope=user,public_repo)
 
  

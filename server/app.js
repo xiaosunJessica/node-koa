@@ -18,16 +18,16 @@ const errorHandle = require("./middlewares/error");
 
 const routers = require('./routers/index');
 app
+.use(views(__dirname + '/views', {
+	extension: 'ejs'
+}))
 .use(staticKoa(
   path.join(__dirname, './static')
 ))
-// .use(views(__dirname + '/views', {
-// 	extension: 'ejs'
-// }))
 .use(errorHandle)
 .use(cors())
 .use(bodyParser())
-.use(jwt({ secret: config.secretSign }).unless({path: [/^\/user\/login/, /^\/user\/signIn/]}))
+.use(jwt({ secret: config.secretSign }).unless({path: [/^\/user\/login/, /^\/user\/signIn/, /^\/oauth.*/]}))
 //初始化路由中间件
 .use(routers.routes()).use(routers.allowedMethods);
 
