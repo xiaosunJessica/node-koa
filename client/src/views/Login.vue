@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1>{{ msg }}</h1>
     <div class="panda" />
     <el-form :model="ruleForm" ref="ruleForm" label-width="60px">
       <el-form-item label="用户名" class="username" prop="username">
@@ -18,6 +17,9 @@
       <el-form-item>
         <el-button type="primary" @click="login('ruleForm')" class="btn-login">登录</el-button>
       </el-form-item>
+			<div class="icon-groups">
+				<a href="https://github.com/login/oauth/authorize?client_id=f2662b7c806033f69284&scope=user,public_repo"><img class="icon-login" src="../assets/github.jpg" alt="" /></a>
+			</div>
     </el-form>
   </div>
 </template>
@@ -61,10 +63,10 @@ export default {
   width: 320px;
   height: 350px;
   margin: 0 auto;
-  padding: 20px;
   background: #FFFFFF;
-  transform: translate(0, 50%);
+  transform: translate(-50%, 50%);
   border-radius: 4px;
+	position: relative;
 }
 
 .panda {
@@ -108,5 +110,11 @@ li {
 }
 a {
   color: #42b983;
+}
+.icon-groups {
+	text-align: center;
+}
+.icon-login {
+	width: 64px;
 }
 </style>
