@@ -29,6 +29,7 @@
 </template>
 
 <script>
+	import { removeCookie } from "../../utils/cookie.js";
 	export default {
 		name: 'Home',
 		data: () => ({
@@ -39,7 +40,7 @@
 				this.showMenu = !this.showMenu;
 			},
 			logout() {
-				localStorage.clear();
+				removeCookie('token');
 				this.$router.push('/login')
 			}
 		}

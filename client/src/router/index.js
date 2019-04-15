@@ -8,6 +8,7 @@ import Manage from '../views/manage';
 import AddProject from '../views/manage/add';
 import EditProject from '../views/manage/edit';
 import ListProject from '../views/manage/list';
+import { getCookie } from "../utils/cookie";
 
 
 Vue.use(Router)
@@ -26,7 +27,8 @@ const router = new Router({
     }, 
     {
       path: '/home',
-      name: 'home',
+			name: 'home',
+			meta: { requiresAuth: true },
       component: Home
     },
     {
@@ -58,7 +60,10 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-		const bear = window.localStorage.getItem('bear');
+		//const bear = window.localStorage.getItem('bear');
+		//console.info(bear, '-----bar')
+		const bear = getCookie('token');
+
     if (!bear || bear === 'undefined') {
       next('/login')
     } else {

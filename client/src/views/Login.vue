@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { getCookie, setCookie } from "../utils/cookie";
+
 export default {
   name: 'Login',
   data: () => {
@@ -37,7 +39,14 @@ export default {
   },
   props: {
     msg: String
-  },
+	},
+	mounted() {
+		//console.info("getCookie('token')",getCookie('token'))
+		if(getCookie('token')){
+			//window.localStorage.setItem(`bear`, getCookie('token'))
+			this.$router.push('/home')
+		}
+	},
   methods:{
     login(){
       this.$http.post('/user/login', {
@@ -45,7 +54,9 @@ export default {
        password: this.ruleForm.password
      }).then(res => {
        if (res.success) {
-         window.localStorage.setItem(`bear`, res.token);
+				console.info('token',res.token);
+				 //window.localStorage.setItem(`bear`, res.token);
+				 setCookie('token',res.token);
          this.$router.push('/home')
        }
      })

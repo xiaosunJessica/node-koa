@@ -1,6 +1,7 @@
 
 const config = require('../config');
 const request = require('request');
+const jwt = require('jsonwebtoken');
 
 
 const codeToAccessToken = async ctx => {
@@ -14,9 +15,7 @@ const codeToAccessToken = async ctx => {
 			reject(error);
 		})
 	})
-	console.info(access_token, '-----accs---')
 	let userInfo = 	await	new Promise((resolve, reject) => {
-		console.info('-------userinfo')
 		request({
 			url: `https://api.github.com/user?access_token=${access_token}`,
 			headers: {
@@ -24,16 +23,35 @@ const codeToAccessToken = async ctx => {
 				'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'
 			}
 		}, function (error, response, body) {
-		console.info(response, '-----response----') 
-		if (!error && response.statusCode == 200) {	 
-			 resolve(body);
-		 }
-		 reject(error);
-	 })
- })
-
- console.info(userInfo, '-----userInfo')
-
+			if (!error && response.statusCode == 200) {
+				console.info(body, '------body')
+				resolve(body);
+			}
+			reject(error);
+			})
+	})
+	 
+	const userToken = {
+		username: userInfo.login,
+		password: userInfo.id
+	}
+	const token = jwt.sign(userToken, config.secretSign, {expiresIn: '1h'})	 
+	//ctx.body = { success: true, message: '登录成功', token}
+	if(userInfo) {
+		ctx.cookies.set(
+			"token",
+			token,
+			{
+				domain: 'localhost',  // 写cookie所在的域名
+				path: '/',       // 写cookie所在的路径
+				maxAge: 24 * 10 * 60 * 1000, // cookie有效时长
+				// expires: new Date('2017-02-15'),  // cookie失效时间
+				httpOnly: false,  // 是否只用于http请求中获取
+				overwrite: true,  // 是否允许重写
+			}
+		)
+		ctx.redirect(`http://localhost:8080/login`);
+	}
 }
 
 const getUrlParam = (url, name) => {
