@@ -1,14 +1,32 @@
 
 
 const Project = require('../models/project');
+const getJWTPayload = require('../util/verifyJwt').getJWTPayload
+
+let users = {
+	
+}
+let userInfo = {
+
+}
 const ws = async ctx => {
-	const data = await Project.find();
-	console.info(data, '-----data')
-	ctx.websocket.send(data.length);
-  ctx.websocket.on('message', function(message) {
-    // do something with the message from client
-		console.log(message, '----message-----');
-  });
+  ctx.websocket.on('message', function(token) {
+		// do something with the message from client
+		if (token) {
+			userInfo = getJWTPayload(token);
+			users[userInfo.username] = ctx.websocket;
+			sendWs(ctx)
+		}
+	});
 }
 
-module.exports = { ws }
+const sendWs = async (ctx) => {
+	const data = await Project.find();
+	const userList = Object.keys(users);
+	userList.forEach(u => {
+		console.info(u, userList)
+		users[u].send(data.length);
+	})
+}
+
+module.exports = { ws, sendWs }

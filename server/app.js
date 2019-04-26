@@ -65,7 +65,7 @@ wsApp.ws.use(function(ctx, next) {
 });
 
 // Using routes
-wsApp.ws.use(route.all('/ws/*', wsController.ws));
+wsApp.ws.use(route.all('/notice', wsController.ws));
 
 
 
