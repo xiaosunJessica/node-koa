@@ -19,6 +19,12 @@
               <router-link to="/manage/list">列表</router-link>
             </el-menu-item>
           </el-submenu>
+          <el-submenu index="2">
+            <template slot="title"><i class="el-icon-message"></i>其它</template>
+            <el-menu-item index="2-1">
+              <router-link to="/manage/image">图片</router-link>
+            </el-menu-item>
+          </el-submenu>
         </el-menu>
       </el-aside>
       <el-main class="content">

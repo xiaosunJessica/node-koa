@@ -8,6 +8,7 @@ import Manage from '../views/manage';
 import AddProject from '../views/manage/add';
 import EditProject from '../views/manage/edit';
 import ListProject from '../views/manage/list';
+import ImageProject from '../views/manage/image';
 import { getCookie } from "../utils/cookie";
 
 
@@ -48,6 +49,10 @@ const router = new Router({
 				{
 					path: 'edit/:id',
 					component: EditProject
+				},
+				{
+					path: 'image',
+					component: ImageProject
 				}
 			]
     },
