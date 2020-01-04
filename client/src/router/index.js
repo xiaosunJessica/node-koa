@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 import Login from '../views/Login';
 import Register from '../views/Register';
-import Home from '../views/home';
+import Home from '../views/home1';
 import Manage from '../views/manage';
 import AddProject from '../views/manage/add';
 import EditProject from '../views/manage/edit';
