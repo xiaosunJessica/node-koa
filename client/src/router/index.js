@@ -3,13 +3,15 @@ import Router from 'vue-router';
 
 import Login from '../views/Login';
 import Register from '../views/Register';
-import Home from '../views/home';
+import Home from '../views/Home';
 import Manage from '../views/manage';
 import AddProject from '../views/manage/add';
 import EditProject from '../views/manage/edit';
 import ListProject from '../views/manage/list';
 import ImageProject from '../views/manage/image';
 import { getCookie } from "../utils/cookie";
+import Crsf from '../views/manage/security/Crsf';
+import Xss from '../views/manage/security/Xss'
 
 
 Vue.use(Router)
@@ -53,7 +55,15 @@ const router = new Router({
 				{
 					path: 'image',
 					component: ImageProject
-				}
+				},
+        {
+					path: 'xss',
+					component: Xss,
+				},
+				{
+					path: 'crsf',
+					component: Crsf,
+				},
 			]
     },
     {

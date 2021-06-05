@@ -4,6 +4,7 @@
     <el-table-column prop="date" label="日期" :formatter="dateFormat"></el-table-column>
     <el-table-column prop="user" label="创建人"></el-table-column>
     <el-table-column prop="name" label="项目名称"></el-table-column>
+    <el-table-column prop="count" label="数量"></el-table-column>
     <el-table-column label="操作">
       <template slot-scope="scope">
         <el-button @click="onEditItem(scope.row)" type="text">编辑</el-button>

@@ -25,6 +25,15 @@
               <router-link to="/manage/image">图片</router-link>
             </el-menu-item>
           </el-submenu>
+          <el-submenu index="3">
+            <template slot="title"><i class="el-icon-message"></i>安全攻击</template>
+            <el-menu-item index="3-1">
+              <router-link to="/manage/xss">Xss</router-link>
+            </el-menu-item>
+            <el-menu-item index="3-2">
+              <router-link to="/manage/crsf">crsf</router-link>
+            </el-menu-item>
+          </el-submenu>
         </el-menu>
       </el-aside>
       <el-main class="content">

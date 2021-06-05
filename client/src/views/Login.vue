@@ -44,7 +44,7 @@ export default {
 		//console.info("getCookie('token')",getCookie('token'))
 		if(getCookie('token')){
 			//window.localStorage.setItem(`bear`, getCookie('token'))
-			this.$router.push('/home')
+			this.$router.push('/manage/list')
 		}
 	},
   methods:{
@@ -57,7 +57,7 @@ export default {
 				console.info('token',res.token);
 				 //window.localStorage.setItem(`bear`, res.token);
 				 setCookie('token',res.token);
-         this.$router.push('/home')
+         this.$router.push('/manage/list')
        }
      })
     },
