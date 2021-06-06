@@ -71,5 +71,6 @@
 				
    8. 单点登录
 	 9. oauth2(https://github.com/login/oauth/authorize?client_id=&scope=user,public_repo)
+      首先：在页面会有对应的连接定位到github登录页，连接中含有client_id
 
  

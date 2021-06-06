@@ -9,7 +9,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
  * @param {object} ctx
  */
 const addProject = async ctx => {
-	const { name } = ctx.request.body;
+	const { name, count } = ctx.request.body;
 	const token = ctx.headers.authorization.split(" ")[1]
   let payload = getJWTPayload(token)
   const user = payload.username
@@ -30,7 +30,8 @@ const addProject = async ctx => {
       date,
       name,
       user,
-      id
+      id,
+      count
     })
 		const prj = await pModel.save();
     if (!prj.errors) {
@@ -74,10 +75,13 @@ const editProject = async ctx => {
     message: '',
     data: null
   }
-	const { id, name } = ctx.request.body;
-	const data = await Project.update({
-		_id: `${id}`,
-		name
+	const { id, name, count } = ctx.request.body;
+  console.log(id, name, count, 'id, name, countid, name, count')
+	const data = await Project.updateOne({_id: `${id}`}, {$set:
+    {
+      name,
+      count: Number(count)
+    }
 	});
 	if (data.ok) {
 		result.success = true;
