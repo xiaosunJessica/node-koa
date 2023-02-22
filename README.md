@@ -72,5 +72,9 @@
    8. 单点登录
 	 9. oauth2(https://github.com/login/oauth/authorize?client_id=&scope=user,public_repo)
       首先：在页面会有对应的连接定位到github登录页，连接中含有client_id
+      其次（github服务）：在github登录页鉴权，成功后获取code, 并重定向到github应用配置的ulr+code，它会在当前服务发起请求。
+      最后，在当前服务下（node）端，发起请求`https://github.com/login/oauth/access_token?client_id=f2662b7c806033f69284&client_secret=fb7c354cc50c148d587d0ffa73a0a5a6610028dc&code=${ctx.request.query.code}`，获取到access_token + 同时根据access_token获取https://api.github.com/user?access_token=${access_token}到个人信息
+
+
 
  

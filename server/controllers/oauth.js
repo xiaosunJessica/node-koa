@@ -8,6 +8,7 @@ const codeToAccessToken = async ctx => {
 	let url = `https://github.com/login/oauth/access_token?client_id=f2662b7c806033f69284&client_secret=fb7c354cc50c148d587d0ffa73a0a5a6610028dc&code=${ctx.request.query.code}`
 	let access_token = 	await	new Promise((resolve, reject) => {
 		 request(url, function (error, response, body) {
+       console.log(url, '-----', error, 'erroroooo', response)
 			if (!error && response.statusCode == 200) {
 				let access_token = getUrlParam('?'+body, 'access_token');
 				resolve(access_token);
