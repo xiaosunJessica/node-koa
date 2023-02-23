@@ -13,8 +13,8 @@ export default function (designerDom: any, moduleAndExtensions: any, context?: a
   };
 
   // 清除旧 modeler
-  context.getModeler && context.getModeler.destroy();
-  context.$store.commit("clearBpmnState");
+  context?.getModeler?.destroy();
+  context?.$store.commit("clearBpmnState");
 
   const modeler = new Modeler(options);
 

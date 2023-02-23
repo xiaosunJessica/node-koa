@@ -3,7 +3,7 @@ import initModeler from "./initModeler";
 import moduleAndExtensions from "./moduleAndExtensions";
 import { createNewDiagram } from "@/utils/xml";
 import { debounce } from "min-dash";
-import { defineProps, watch, reactive, nextTick, ref } from "vue";
+import { defineProps, watch, reactive, nextTick, ref, getCurrentInstance } from "vue";
 import { mapGetters, useStore } from "vuex";
 const designerRef = ref(null);
 const props = defineProps({
@@ -28,7 +28,8 @@ const reloadProcess = debounce(async function (setting: any, oldSetting: any) {
   const modelerModules = moduleAndExtensions(setting);
 
   await nextTick();
-  const modeler = initModeler(designerRef.value, modelerModules);
+  const instance = getCurrentInstance()
+  const modeler = initModeler(designerRef.value, modelerModules, instance);
   if (!oldSetting || setting.processEngine !== oldSetting.processEngine) {
     await createNewDiagram(modeler);
   } else {
@@ -36,14 +37,27 @@ const reloadProcess = debounce(async function (setting: any, oldSetting: any) {
   }
 }, 100);
 
+watch(
+  store.state.editor,
+  (value, oldValue) => {
+    try {
+      reloadProcess(value, oldValue);
+    } catch (e) {
+      console.log(e, '----eee----eee')
+    }
+}, {immediate: true, deep: true})
 
-watch(store.state.editor, (value, oldValue) => {
-  try {
-    reloadProcess(value, oldValue);
-  } catch (e) {
-    console.log(e, '----eee----eee')
-  }
-})
+// getEditor: {
+//   immediate: true,
+//     deep: true,
+//       handler: async function (value, oldValue) {
+//         try {
+//           this.reloadProcess(value, oldValue);
+//         } catch (e) {
+//           catchError(e);
+//         }
+//       }
+// }
 </script>
 <template>
   <div :class="['syq-designer', bgClass()]" ref="designerRef"></div>
