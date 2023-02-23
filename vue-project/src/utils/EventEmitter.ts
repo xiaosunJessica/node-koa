@@ -31,13 +31,13 @@ class EventEmitter {
     return EventEmitter;
   }
 
-  static addListener(type: any, fn: any, context: any, once: any) {
+  static addListener(type: any, fn: any, context: any) {
     return EventEmitter._addListener(type, fn, context, null);
   }
 
-  static on(type: any, fn: any, context: any) {
-    console.log('0000type------')
-    return EventEmitter.addListener(type, fn, context, null);
+  static on(type: any, fn: any, context?: any) {
+    console.log("0000type------");
+    return EventEmitter.addListener(type, fn, context);
   }
 
   static once(type: any, fn: any, context: any) {
@@ -130,7 +130,11 @@ class EventEmitter {
 
     const events = EventEmitter._events[type];
     // use `map` because we need to return a new array
-    return isNullOrUndefined(events) ? [] : typeof events === "function" ? [events] : events.map((o: any) => o);
+    return isNullOrUndefined(events)
+      ? []
+      : typeof events === "function"
+      ? [events]
+      : events.map((o: any) => o);
   }
 
   static listenerCount(type: any) {
@@ -138,7 +142,11 @@ class EventEmitter {
 
     const events = EventEmitter._events[type];
 
-    return isNullOrUndefined(events) ? 0 : typeof events === "function" ? 1 : events.length;
+    return isNullOrUndefined(events)
+      ? 0
+      : typeof events === "function"
+      ? 1
+      : events.length;
   }
 
   static eventNames() {

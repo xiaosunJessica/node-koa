@@ -1,29 +1,29 @@
-import { createStore } from 'vuex'
-import { unObserver } from '@/utils/tool'
+import { createStore } from "vuex";
+import { unObserver } from "@/utils/tool";
 
 export interface State {
-  editor: any
-  globalData: any
+  editor: any;
+  globalData: any;
 }
 
 // Create a new store instance.
 const store = createStore<State>({
-  state () {
+  state() {
     return {
       editor: {},
       globalData: {
         _modeler: {
-          a: 1
-        }
-      }
-    }
+          a: 1,
+        },
+      },
+    };
   },
   getters: {
     //  editor
     getEditor: (state) => state.editor,
     getProcessDef: (state) => ({
       processName: state.editor.processName,
-      processId: state.editor.processId
+      processId: state.editor.processId,
     }),
     getProcessEngine: (state) => state.editor.processEngine,
     getEditorConfig: (state) => {
@@ -37,8 +37,11 @@ const store = createStore<State>({
 
     // modeler
     getModeler: (state) => state.globalData._modeler,
-    getModeling: (state) => (state.globalData._modeler ? state.globalData._modeler.get("modeling") : undefined),
-    getActive: (state) => state.globalData.activeElement
+    getModeling: (state) =>
+      state.globalData._modeler
+        ? state.globalData._modeler.get("modeling")
+        : undefined,
+    getActive: (state) => state.globalData.activeElement,
   },
   mutations: {
     // editor
@@ -71,8 +74,8 @@ const store = createStore<State>({
      */
     setElement(state, { element, id }) {
       state.globalData.activeElement = { element: unObserver(element), id };
-    }
-  }
-})
+    },
+  },
+});
 
 export default store;

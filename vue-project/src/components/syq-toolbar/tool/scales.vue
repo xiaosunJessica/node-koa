@@ -1,37 +1,42 @@
-<script setup>
+<!-- filename: scales.vue -->
+<script setup lang="ts">
 import { onBeforeMount, reactive } from "vue";
 import EventEmitter from "@/utils/EventEmitter";
-const state = reactive({
+const state = reactive<{
+  currentScale: number;
+  _canvas: any;
+}>({
   currentScale: 1,
   _canvas: {},
 });
 
 onBeforeMount(() => {
-  EventEmitter.on("modeler-init", (modeler) => {
+  EventEmitter.on("modeler-init", (modeler: any) => {
+    console.log(modeler, '----mode00000')
     try {
       state._canvas = modeler.get("canvas");
       state.currentScale = state._canvas.zoom();
     } finally {
-      modeler.on("canvas.viewbox.changed", ({ viewbox }) => {
+      modeler.on("canvas.viewbox.changed", ({ viewbox }: { viewbox: any }) => {
         state.currentScale = viewbox.scale;
       });
     }
   });
 });
 
-function zoomReset(newScale) {
+function zoomReset(newScale: any) {
   state._canvas &&
     state._canvas.zoom(
       newScale,
       newScale === "fit-viewport" ? undefined : { x: 0, y: 0 }
     );
 }
-function zoomOut(newScale) {
+function zoomOut(newScale: any) {
   state.currentScale =
     newScale || Math.floor(state.currentScale * 100 - 0.1 * 100) / 100;
   zoomReset(state.currentScale);
 }
-function zoomIn(newScale) {
+function zoomIn(newScale?: any) {
   state.currentScale =
     newScale || Math.floor(state.currentScale * 100 + 0.1 * 100) / 100;
   zoomReset(state.currentScale);
@@ -56,7 +61,7 @@ function zoomIn(newScale) {
     <el-button v-r-popover:zoomReset @click="zoomReset('fit-viewport')">
       >
       <span style="text-align: center; display: inline-block; width: 40px">
-        {{ Math.floor(currentScale * 10) * 10 + "%" }}
+        {{ Math.floor(state.currentScale * 10) * 10 + "%" }}
       </span>
       <el-popover
         ref="zoomReset"

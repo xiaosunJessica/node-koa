@@ -1,8 +1,8 @@
-// import BpmnIcon from "@packages/components/common/BpmnIcon";
-// import CollapseTitle from "@packages/components/common/CollapseTitle";
-// import EditItem from "@packages/components/common/EditItem";
+// import BpmnIcon from "../components/common/BpmnIcon";
+// import CollapseTitle from "../components/common/CollapseTitle";
+// import EditItem from "../components/common/EditItem";
 import LucideIcon from "./LucideIcon.vue";
-// import NumberTag from "@packages/components/common/NumberTag";
+// import NumberTag from "../components/common/NumberTag";
 
 const components = [
   LucideIcon,

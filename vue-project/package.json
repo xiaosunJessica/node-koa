@@ -11,10 +11,21 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@bpmn-io/add-exporter": "^0.2.0",
+    "@bpmn-io/element-template-chooser": "^1.0.0",
+    "@bpmn-io/properties-panel": "^1.4.0",
+    "bpmn-js": "^11.4.1",
+    "bpmn-js-bpmnlint": "^0.20.1",
+    "bpmn-js-connectors-extension": "^0.4.5",
+    "bpmn-js-properties-panel": "^1.17.2",
+    "bpmn-js-token-simulation": "^0.31.0",
+    "bpmnlint": "^8.1.1",
+    "diagram-js-minimap": "^4.0.1",
     "element-plus": "^2.2.32",
     "element-ui": "^2.15.13",
     "lucide-vue": "^0.115.0",
     "lucide-vue-next": "^0.115.0",
+    "min-dash": "^4.0.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
     "vuex": "^4.0.2"

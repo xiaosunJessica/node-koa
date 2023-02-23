@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import SyqToolbar from './components/syq-toolbar/index.vue'
-import SyqMenu from './components/syq-menu/index.vue'
-import SyqDesigner from './components/syq-designer/index.vue'
-import SyqPanel from './components/syq-panel/index.vue'
+import { RouterView } from "vue-router";
+import SyqToolbar from "./components/syq-toolbar/index.vue";
+import SyqMenu from "./components/syq-menu/index.vue";
+import SyqDesigner from "./components/syq-designer/index.vue";
+import SyqPanel from "./components/syq-panel/index.vue";
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import SyqPanel from './components/syq-panel/index.vue'
       <SyqPanel />
     </div>
     <SyqMenu />
-    
+
     <!-- <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
@@ -24,5 +24,4 @@ import SyqPanel from './components/syq-panel/index.vue'
   <RouterView />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

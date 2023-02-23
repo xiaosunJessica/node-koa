@@ -10,29 +10,29 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     size: {
       type: Number,
-      default: 16
+      default: 16,
     },
     color: {
       type: String,
-      default: "currentColor"
+      default: "currentColor",
     },
     strokeWidth: {
       type: Number,
-      default: 2
+      default: 2,
     },
     defaultClass: {
       type: String,
-      default: "lucide-icon"
-    }
+      default: "lucide-icon",
+    },
   },
   computed: {
     icon() {
       return icons[this.name];
-    }
-  }
+    },
+  },
 };
 </script>

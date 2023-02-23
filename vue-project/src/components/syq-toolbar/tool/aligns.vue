@@ -8,8 +8,8 @@ const buttons = [
   { name: "右对齐", key: "right", icon: "AlignEndVertical" },
   { name: "上对齐", key: "top", icon: "AlignStartHorizontal" },
   { name: "垂直居中", key: "middle", icon: "AlignCenterHorizontal" },
-  { name: "下对齐", key: "bottom", icon: "AlignEndHorizontal" }
-]
+  { name: "下对齐", key: "bottom", icon: "AlignEndHorizontal" },
+];
 
 // export default {
 //   name: "BpmnAligns",
@@ -59,10 +59,7 @@ const buttons = [
         class="el-button__no-padding"
         @click="alignElements(btn.key)"
       >
-        <lucide-icon
-          :name="btn.icon"
-          :size="16"
-        />
+        <lucide-icon :name="btn.icon" :size="16" />
         <el-popover
           ref="popover"
           placement="bottom"
@@ -72,5 +69,5 @@ const buttons = [
         />
       </el-button>
     </template>
-</el-button-group>
+  </el-button-group>
 </template>
