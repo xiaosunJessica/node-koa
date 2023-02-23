@@ -1,5 +1,5 @@
 <script setup>
-  import { defineComponent, ref } from 'vue'
+  import { ref } from 'vue'
   const importRef = ref(null);
 
   function openImportWindow() {
