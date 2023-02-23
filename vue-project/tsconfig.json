@@ -8,6 +8,10 @@
     }
   },
 
+  "vueCompilerOptions": {
+    "experimentalCompatMode": 2
+  },
+
   "references": [
     {
       "path": "./tsconfig.config.json"

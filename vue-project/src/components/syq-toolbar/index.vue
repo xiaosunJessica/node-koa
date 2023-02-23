@@ -9,13 +9,15 @@
 </script>
 
 <template>
-  <el-button-group>
-    <SyqImports />
-    <SyqExports />
-    <SyqPreviews />
-  </el-button-group>
-  <SyqAligns />
-  <SyqScales />
-  <SyqCommands />
-  <SyqExternals />
+  <div class="syq-toolbar">
+    <el-button-group>
+      <SyqImports />
+      <SyqExports />
+      <SyqPreviews />
+    </el-button-group>
+    <SyqAligns />
+    <SyqScales />
+    <SyqCommands />
+    <SyqExternals />
+  </div>
 </template>
