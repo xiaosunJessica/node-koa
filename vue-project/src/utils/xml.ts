@@ -16,7 +16,7 @@ export function emptyXML(key: any, name: any) {
 </bpmn:definitions>`;
 }
 
-export async function createNewDiagram(modeler: any, newXml: any, settings: any) {
+export async function createNewDiagram(modeler: any, newXml?: any, settings?: any) {
   try {
     const timestamp = Date.now();
     const { processId, processName } = settings || {};

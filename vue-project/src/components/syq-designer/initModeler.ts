@@ -4,7 +4,7 @@ import EventEmitter from "@/utils/EventEmitter";
 // import { addExtensionProperty } from "../bo-utils/extensionPropertiesUtil";
 import { unObserver } from "@/utils/tool";
 
-export default function (designerDom: any, moduleAndExtensions: any, context: any) {
+export default function (designerDom: any, moduleAndExtensions: any, context?: any) {
   const options = {
     container: designerDom,
     additionalModules: moduleAndExtensions[0] || [],
