@@ -1,8 +1,9 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import store from '@/stores';
 import ElementPlus from "element-plus"
 import Common from "./components/common"
 import App from './App.vue'
+import LesscodeHeader from '@/views/lesscode/header/lesscode-header.vue';
 import router from './router'
 
 import './assets/main.css'
@@ -11,9 +12,13 @@ import "./theme/index.scss";
 
 const app = createApp(App)
 
-app.use(createPinia())
+app.use(store)
 app.use(ElementPlus)
 app.use(Common)
 app.use(router)
+
+app.component('lesscode-header', LesscodeHeader)
+
+
 
 app.mount('#app')
