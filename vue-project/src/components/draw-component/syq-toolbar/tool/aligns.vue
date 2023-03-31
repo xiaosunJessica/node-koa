@@ -1,5 +1,4 @@
 <script setup>
-// import { mapGetters } from "vuex";
 // import EventEmitter from "@utils/EventEmitter";
 
 const buttons = [

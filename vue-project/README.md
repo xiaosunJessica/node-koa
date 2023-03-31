@@ -1,24 +1,52 @@
-# 学习 vue3
+# vue-project
 
-1. 初始化 npm init vue@latest
+This template should help get you started developing with Vue 3 in Vite.
 
-2. scss 使用 npm i sass
+## Recommended IDE Setup
 
-3. Elmenet-ui 不可以，需要使用 element-plus
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-4. script setup 含有 export default 效果，不能嵌套使用
+## Type Support for `.vue` Imports in TS
 
-5. ref 的使用，ref.value 类似 react 中的 ref.current
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
 
-6. el-popover 的效果，是需要将 template 上加 popover 属性
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
-7. watch, 第一个变量，第二个是改变执行函数，第三个接收参数，immediate 会直接先执行函数
-   watch(store.state.editor, (value, oldValue) => {
-   try {
-   reloadProcess(value, oldValue);
-   } catch (e) {
-   console.log(e, '----eee----eee')
-   }
-   }, {immediate: true, deep: true})
+1. Disable the built-in TypeScript Extension
+    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-8. getCurrentInstance 获取当前组件实例，类似 this 的功能
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:unit
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```

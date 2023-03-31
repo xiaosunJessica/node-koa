@@ -4,7 +4,7 @@ import moduleAndExtensions from "./moduleAndExtensions";
 import { createNewDiagram } from "@/utils/xml";
 import { debounce } from "min-dash";
 import { defineProps, watch, reactive, nextTick, ref, getCurrentInstance } from "vue";
-import { mapGetters, useStore } from "vuex";
+// import { mapGetters, useStore } from "vuex";
 const designerRef = ref(null);
 const props = defineProps({
   xml: {
@@ -13,11 +13,11 @@ const props = defineProps({
   },
 });
 
-const store = useStore();
+// const store = useStore();
 
 function bgClass() {
-  const bg = store.state.editor.bg;
-  console.log(store.state, store.state.editor)
+  // const bg = store.state.editor.bg;
+  const bg = 'grid-image';
   if (bg === "grid-image") return "designer-with-bg";
   if (bg === "image") return "designer-with-image";
   return "";
@@ -37,15 +37,15 @@ const reloadProcess = debounce(async function (setting: any, oldSetting: any) {
   }
 }, 100);
 
-watch(
-  store.state.editor,
-  (value, oldValue) => {
-    try {
-      reloadProcess(value, oldValue);
-    } catch (e) {
-      console.log(e, '----eee----eee')
-    }
-}, {immediate: true, deep: true})
+// watch(
+//   store.state.editor,
+//   (value, oldValue) => {
+//     try {
+//       reloadProcess(value, oldValue);
+//     } catch (e) {
+//       console.log(e, '----eee----eee')
+//     }
+// }, {immediate: true, deep: true})
 
 // getEditor: {
 //   immediate: true,

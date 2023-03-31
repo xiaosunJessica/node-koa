@@ -15,9 +15,9 @@ import SyqExternals from "./tool/externals.vue";
       <SyqExports />
       <SyqPreviews />
     </el-button-group>
-    <SyqAligns />
-    <SyqScales />
-    <SyqCommands />
-    <SyqExternals />
+     <SyqAligns />
+     <SyqScales />
+      <SyqCommands />
+      <SyqExternals />
   </div>
 </template>

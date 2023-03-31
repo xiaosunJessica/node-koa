@@ -1,5 +1,5 @@
 import { assign } from "min-dash";
-import { notNull } from "../../../utils/tool";
+import { notNull } from "@/utils/tool";
 
 export function createAction(elementFactory, create, type, group, className, title, options) {
   function createListener(event) {
