@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
 import SyqToolbar from "@/components/draw-component/syq-toolbar/index.vue"
 import SyqMenu from "@/components/draw-component/syq-menu/index.vue"
 import SyqDesigner from "@/components/draw-component/syq-designer/index.vue"
