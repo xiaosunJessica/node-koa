@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import SyqToolbar from "@/components/draw-component/syq-toolbar/index.vue"
-import SyqMenu from "@/components/draw-component/syq-menu/index.vue"
-import SyqDesigner from "@/components/draw-component/syq-designer/index.vue"
-import SyqPanel from "@/components/draw-component/syq-panel/index.vue"
+  import SyqToolbar from "@/components/draw-component/syq-toolbar/index.vue"
+  import SyqMenu from "@/components/draw-component/syq-menu/index.vue"
+  import SyqDesigner from "@/components/draw-component/syq-designer/index.vue"
+  import SyqPanel from "@/components/draw-component/syq-panel/syq-panel.vue"
 </script>
 
 <template>
