@@ -13,11 +13,18 @@ import { getCookie } from "../utils/cookie";
 import Crsf from '../views/manage/security/Crsf';
 import Xss from '../views/manage/security/Xss'
 
+import DeployAction from '../views/DeployAction';
+
 
 Vue.use(Router)
 const router = new Router({
   mode: 'history',
   routes: [
+     {
+      path: '/deployAction',
+      name: 'DeployAction',
+      component: DeployAction
+    },
      {
       path: '/login',
       name: 'Login',

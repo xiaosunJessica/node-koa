@@ -1,3 +1,4 @@
+<!-- eslint-disable no-mixed-spaces-and-tabs -->
 <template>
   <div class="container">
     <div class="panda" />
@@ -54,15 +55,14 @@ export default {
        password: this.ruleForm.password
      }).then(res => {
        if (res.success) {
-				console.info('token',res.token);
-				 //window.localStorage.setItem(`bear`, res.token);
-				 setCookie('token',res.token);
-         this.$router.push('/manage/list')
+  			//window.localStorage.setItem(`bear`, res.token);
+  			setCookie('token',res.token);
+        this.$router.push('/manage/list')
        }
      })
     },
     register() {
-    
+
     },
   }
 }
@@ -87,7 +87,7 @@ export default {
   background: url('../assets/panda.png');
   background-size: contain;
   width: 250px;
-  height: 200px; 
+  height: 200px;
 }
 
 .forget {
@@ -106,7 +106,7 @@ export default {
 
 .username:focus-within .input-username {
   border-color: red;
-} 
+}
 
 h3 {
   margin: 40px 0 0;
