@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import http from '@/api';
-const userStore = defineStore({
+const useUserStore = defineStore({
   id: "userInfo",
   state: () => {
     return {
@@ -17,7 +17,7 @@ const userStore = defineStore({
     /** 登出 */
 
     /** 获取用户信息 */
-    getUserInfo(params: any) {
+    getUserInfo(params?: any) {
       return http.get('/user/userinfo', params).then((response:any)=> {
         const userData = response.data || {}
         this.user = userData
@@ -27,4 +27,4 @@ const userStore = defineStore({
   },
 })
 
-export default userStore
+export default useUserStore

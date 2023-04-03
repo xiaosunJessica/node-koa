@@ -7,6 +7,17 @@ import commonjsExternals from 'vite-plugin-commonjs-externals';
 import requireTransform from 'vite-plugin-require-transform';
 // https://vitejs.dev/config/
 export default defineConfig({
+  logLevel: 'info',
+  server: {
+    open: true,
+    host: '0.0.0.0',
+    proxy: {
+      '*/api': {
+        target: 'http://localhost:4999/api',
+        changeOrigin: true,
+      },
+    },
+  },
   plugins: [vue(), vueJsx(),
   //   commonjsExternals({
   //   externals: ['bk-magic-vue'],  //这里

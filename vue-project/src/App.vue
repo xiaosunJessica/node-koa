@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import useUserStore from '@/stores/modules/useUserStore';
+const userInfo = useUserStore();
+userInfo.getUserInfo();
 </script>
 
 <template>

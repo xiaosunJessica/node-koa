@@ -1,11 +1,12 @@
 <script setup lang='ts'>
 import { useRouter } from 'vue-router';
 import { computed } from 'vue';
-import userStore from '@/stores/modules/userStore'
+import useUserStore from '@/stores/modules/useUserStore'
+import { storeToRefs } from 'pinia';
 const router = computed(() => {
   return useRouter()
 })
-const userInfo = userStore();
+const userInfo = storeToRefs(useUserStore());
 console.log(userInfo, '----')
 const menus = [
   {
@@ -35,12 +36,12 @@ const isMenuActive = (route: any) => {
 }
 
 const isRouteContains = (path: any, currentRoute: any) => {
-  // const paths = path.split(',')
-  // return currentRoute?.matched?.some(route => paths.some(p => route.path.startsWith(`/${p}`)))
+  const paths = path.split(',')
+  return currentRoute?.matched?.some((route: any) => paths.some((p: any) => route.path.startsWith(`/${p}`)))
 }
 
 const goLogin = () => {
-  // window.location.href = user.value.loginRedirectUrl + '&c_url=' + encodeURIComponent(window.location.href)
+  window.location.href = (userInfo?.user?.value?.loginRedirectUrl) + '&c_url=' + encodeURIComponent(window.location.href)
 }
 
 const toProjectList = () => {
