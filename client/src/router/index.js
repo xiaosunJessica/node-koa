@@ -8,6 +8,10 @@ import Manage from '../views/manage';
 import AddProject from '../views/manage/add';
 import EditProject from '../views/manage/edit';
 import ListProject from '../views/manage/list';
+import ImageProject from '../views/manage/image';
+import { getCookie } from "../utils/cookie";
+import Crsf from '../views/manage/security/Crsf';
+import Xss from '../views/manage/security/Xss'
 
 
 Vue.use(Router)
@@ -18,15 +22,16 @@ const router = new Router({
       path: '/login',
       name: 'Login',
       component: Login
-    }, 
+    },
      {
       path: '/register',
       name: 'Register',
       component: Register
-    }, 
+    },
     {
       path: '/home',
-      name: 'home',
+			name: 'home',
+			meta: { requiresAuth: true },
       component: Home
     },
     {
@@ -46,7 +51,19 @@ const router = new Router({
 				{
 					path: 'edit/:id',
 					component: EditProject
-				}
+				},
+				{
+					path: 'image',
+					component: ImageProject
+				},
+        {
+					path: 'xss',
+					component: Xss,
+				},
+				{
+					path: 'crsf',
+					component: Crsf,
+				},
 			]
     },
     {
@@ -58,7 +75,10 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-		const bear = window.localStorage.getItem('bear');
+		//const bear = window.localStorage.getItem('bear');
+		//console.info(bear, '-----bar')
+		const bear = getCookie('token');
+
     if (!bear || bear === 'undefined') {
       next('/login')
     } else {

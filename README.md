@@ -1,5 +1,8 @@
 # node + koa + mongodb + vue学习
 
+## 启动
+1. 启动数据库mongodb, 进入cd /usr/local/mongodb/bin, sudo ./mongod启动数据库
+2. 进入server目录，node start
 ## 学习点
 ---
 
@@ -27,18 +30,51 @@
   4. node 使用es6语法 import require（babel 相关插件添加）
   5. router.routes() 
   6. postman port  -> front port -> not backend port 
-  7. postman 'content-type': 'application/x-www-form-urlencoded', post ctx.request.body才可以拿到数据
-  8. application/x-www-form-urlencoded与form-data区别
-  9. postman: get / post
+  7. postman 'content-type': 'application/x-www-form-urlencoded', post 		ctx.request.body才可以拿到数据 
+
+		常用content-type | 使用场景|
+		:---:             |:---: |
+		multiple/form-data |发送file文件包，会附带boundary用于分割数据,如图片传输 |
+		application/x-www-form-urlencoded |普通form表单提交，或js发包 |
+		application/json|发送json格式数据 
+  
+  8. postman: get / post
 
 ## 待完成(2018.12.1)
    1. ~~注册功能~~
-   2. content-type, get/post等方式发送数据，后台获取参数的方式
-   3. jwt 深入学习，以及401怎么返回比较合适
-   4. import require学习，写出require中间件的方法
+   <!-- 2. content-type, get/post等方式发送数据，后台获取参数的方式 -->
+   3. [jwt 深入学习，以及401怎么返回比较合适](http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
+   4. [import require学习](http://imweb.io/topic/582293894067ce9726778be9)，[另一个链接](https://chenshenhai.github.io/koa2-note/note/other/esm.html)
+	 写出require中间件的方法
+
+		类型 | 导入 | 导出
+		---: | ---: | ---:
+		ES6 | import(编译) | export
+		commonJS | require(运行) | module.exports
    5. node router学习
    6. 测试
-   7. ssr
+		[前端测试](https://hk.saowen.com/a/e4b066f8c8d0f7164a93e01a8b98a1b26b20743581a8e6c999002c744e1b417f)：
+			a: 安装@vue/cli-plugin-unit-mocha、@vue/test-utils、chai
+			b: eslint屏蔽mocha报错，在eslintConfig中的env添加mocha: true
+			c: 测试默认文件是tests/unit下的*.spec.js
+			
+   7. [ssr](https://ssr.vuejs.org/zh/#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E6%B8%B2%E6%9F%93-ssr-%EF%BC%9F)
+
+	 		7.1: 什么是ssr
+			 
+			7.2: 为什么使用ssr
+				a.更好的SEO，由于搜索引擎爬虫抓取工具可以直接查看完全渲染的页面(如果SEO对你的站点比较重要，而页面是通过异步获取，此时选SSR解决)
+				
+				如果服务端渲染只是简单的为了改善页面的SEO，此时需要采用的是预渲染，无需使用web服务器动态编译HTML，采用预渲染方式，在构建时针对特定路由生成简单的静态HTML文件。设置预渲染更简单，可以将前端作为一个静态站点
+				
+				b.渲染更快（缓慢的网络或缓慢的设备，选SSR解决）
+				
    8. 单点登录
+	 9. oauth2(https://github.com/login/oauth/authorize?client_id=&scope=user,public_repo)
+      首先：在页面会有对应的连接定位到github登录页，连接中含有client_id
+      其次（github服务）：在github登录页鉴权，成功后获取code, 并重定向到github应用配置的ulr+code，它会在当前服务发起请求。
+      最后，在当前服务下（node）端，发起请求`https://github.com/login/oauth/access_token?client_id=f2662b7c806033f69284&client_secret=fb7c354cc50c148d587d0ffa73a0a5a6610028dc&code=${ctx.request.query.code}`，获取到access_token + 同时根据access_token获取https://api.github.com/user?access_token=${access_token}到个人信息
+
+
 
  

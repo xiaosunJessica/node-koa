@@ -20,9 +20,11 @@
     "koa-session": "^5.8.2",
     "koa-static": "^5.0.0",
     "koa-views": "^6.1.4",
+    "koa-websocket": "^5.0.1",
     "koa2-cors": "^2.0.6",
     "mongoose": "^5.2.6",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

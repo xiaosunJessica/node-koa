@@ -3,6 +3,9 @@
     <el-form-item label="项目名称" prop="name">
       <el-input v-model="ruleForm.name"></el-input>
     </el-form-item>
+    <el-form-item label="数量统计" prop="count">
+      <el-input v-model="ruleForm.count"></el-input>
+    </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
       <el-button @click="resetForm('ruleForm')">重置</el-button>
@@ -15,7 +18,8 @@
     data() {
       return {
         ruleForm: {
-          name: ''
+          name: '',
+          count: 0
         },
         rules: {
           name: [
@@ -30,6 +34,7 @@
           if (valid) {
             this.$http.post('/project/add', {
               name: this.ruleForm.name,
+              count: this.ruleForm.count
             }).then(res => {
 							if (res.success) {
 								this.$router.push('/manage/list');

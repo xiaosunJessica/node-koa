@@ -18,6 +18,10 @@ const ProjectSchema = new Schema({
 	user: {
     type: String,
     require: true
+  },
+  count: {
+    type: Number,
+    require: false
   }
 });
 

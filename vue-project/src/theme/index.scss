@@ -1,0 +1,25 @@
+@import 'toolbar';
+@import 'designer';
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .main-content {
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+
+    .designer {
+      flex: 1;
+    }
+  }
+}

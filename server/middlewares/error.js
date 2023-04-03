@@ -9,10 +9,12 @@ const errorHandle = async (ctx, next) => {
 				success: false,
 				status: 401
 			}
+			ctx.redirect
 		} else {
 			throw err;
 		}
 	}
 }
 
-export default errorHandle 
+// export default errorHandle 
+module.exports = errorHandle

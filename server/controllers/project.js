@@ -1,7 +1,7 @@
 
 const Project = require('../models/project');
-const jwt = require('jsonwebtoken');
-const config = require('../config');
+const wsController = require('./ws');
+const getJWTPayload = require('../util/verifyJwt').getJWTPayload
 const ObjectId = require('mongoose').Types.ObjectId;
 
 /**
@@ -9,8 +9,9 @@ const ObjectId = require('mongoose').Types.ObjectId;
  * @param {object} ctx
  */
 const addProject = async ctx => {
-  const { name } = ctx.request.body;
-  let payload = getJWTPayload(ctx.headers.authorization)
+	const { name, count } = ctx.request.body;
+	const token = ctx.headers.authorization.split(" ")[1]
+  let payload = getJWTPayload(token)
   const user = payload.username
   let result = {
     success: false,
@@ -29,13 +30,16 @@ const addProject = async ctx => {
       date,
       name,
       user,
-      id
+      id,
+      count
     })
-    const prj = await pModel.save();
+		const prj = await pModel.save();
     if (!prj.errors) {
+			wsController.sendWs(ctx)
       result.message = '添加成功';
       result.success = true;
-      ctx.body = result
+			ctx.body = result;
+		
     } else {
       ctx.body = result;
     }
@@ -71,10 +75,13 @@ const editProject = async ctx => {
     message: '',
     data: null
   }
-	const { id, name } = ctx.request.body;
-	const data = await Project.update({
-		_id: `${id}`,
-		name
+	const { id, name, count } = ctx.request.body;
+  console.log(id, name, count, 'id, name, countid, name, count')
+	const data = await Project.updateOne({_id: `${id}`}, {$set:
+    {
+      name,
+      count: Number(count)
+    }
 	});
 	if (data.ok) {
 		result.success = true;
@@ -113,10 +120,6 @@ const detail = async ctx => {
   ctx.body = result;
 }
 
-function getJWTPayload(token) {
-  // 验证并解析JWT
-  return jwt.verify(token.split(' ')[1], config.secretSign);
-}
 
 
 module.exports = { addProject, deleteProject, list, detail, editProject }

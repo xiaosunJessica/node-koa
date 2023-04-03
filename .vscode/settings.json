@@ -1,0 +1,18 @@
+{
+  "typescript.preferences.quoteStyle": "single",
+  "javascript.preferences.quoteStyle": "single",
+  // tab 大小为2个空格
+  "editor.tabSize": 2,
+  // 保存时格式化
+  "editor.formatOnSave": true,
+  // 编辑器换行
+  "editor.wordWrap": "off",
+  // //让函数(名)和后面的括号之间加个空格
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  // 开启 vscode 文件路径导航
+  "breadcrumbs.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "eslint.autoFixOnSave": true
+  }
+}
