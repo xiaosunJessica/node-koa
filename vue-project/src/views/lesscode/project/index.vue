@@ -1,45 +1,38 @@
 <script setup lang='ts'>
-import { provide } from 'vue';
+import { provide, reactive } from 'vue';
 import ListCard from './children/list-card.vue';
+import useProjectStore from '@/stores/modules/project';
+const projectStore = useProjectStore();
 const getUpdateInfoMessage = () => {
   return '123344'
 }
 provide('getUpdateInfoMessage', getUpdateInfoMessage)
-const projectList: any = [{
-canDeploy:true,
-canDevelop:true,
-canManage:true,
-canManagePerms:true,
-createTime:"2023-03-30T11:55:41.000Z",
-createUser:"lesscode-offcial-project-creator",
-deleteFlag:0,
-favorite:0,
-id:1,
-isEnableDataSource:0,
-isOffcial:0,
-offcialType:null,
-projectCode: "lesscodeoffcial",
-projectDesc:"bk-lesscode官方内置项目，用于存放内置官方页面模板、自定义组件等资源",
-projectName:"bk-lesscode官方内置项目",
-status:0,
-templateImg:null
-}];
+const state = reactive({
+  projectList: [],
+  pageMap: {}
+})
+let projectList: any = []
+let pageMap: any = {}
 
-const pageMap = {
-1: [{
-  pageName:"Demo页面",
-  projectId:1,
-  updateTime:"2023-03-30T11:55:41.000Z",
-  updateUser:null,
-}]
+
+
+const getProjectList = async () => {
+  const data = await projectStore.query()
+  console.log(data, 'datadatadata')
+  state.projectList = data.projectList
+  state.pageMap = data.pageMap
 }
+
+getProjectList();
+
+
 const filterLinks = [
   { name: '全部应用', value: '' },
   { name: '我创建的', value: 'my' },
   { name: '我收藏的', value: 'favorite' }
 ]
 
-const handleClickFilter = (val: string) => {
+const handleClickFilter = (val?: string) => {
 
 }
 </script>
@@ -58,15 +51,15 @@ const handleClickFilter = (val: string) => {
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item
-            @click=" handleClickFilter(link.value)">
+            @click=" handleClickFilter()">
             空白应用
           </el-dropdown-item>
           <el-dropdown-item
-            @click=" handleClickFilter(link.value)">
+            @click=" handleClickFilter()">
             从模板新建
           </el-dropdown-item>
           <el-dropdown-item
-            @click=" handleClickFilter(link.value)">
+            @click=" handleClickFilter()">
             导入应用
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -84,7 +77,7 @@ const handleClickFilter = (val: string) => {
      </ul>
 
       <div class="extra">
-        <span class="total" v-show="projectList.length">共<em class="count">{{ projectList.length }}</em>个应用</span>
+        <span class="total" v-show="state.projectList.length">共<em class="count">{{ state.projectList.length }}</em>个应用</span>
          <el-input
             style="width: 260px"
             class="w-50 m-2"
@@ -110,12 +103,12 @@ const handleClickFilter = (val: string) => {
     </div>
 
     <!-- 应用列表 -->
-     <div :class="['page-body', { 'is-empty': !projectList.length }]" v-bkloading="{ isLoading: pageLoading, opacity: 1 }">
+     <div :class="['page-body', { 'is-empty': !state.projectList.length }]" v-bkloading="{ opacity: 1 }">
       <div class="page-body-inner">
           <component
             :is="ListCard"
-            :project-list="projectList"
-            :page-map="pageMap"
+            :project-list="state.projectList"
+            :page-map="state.pageMap"
           />
         </div>
       </div>
