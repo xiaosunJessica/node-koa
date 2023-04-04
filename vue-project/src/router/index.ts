@@ -2,8 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import Draw from '@/views/draw.vue';
 import Lesscode from '@/views/lesscode/index.vue';
-import Projects from '@/views/lesscode/project/project-manage/index.vue';
-
+import ProjectManage from '@/views/lesscode/project/project-manage/index.vue';
+import PageManage from '@/views/lesscode/project/page-manage/index.vue';
+import ProjectEntry from '@/views/lesscode/project/entry/index.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -37,14 +38,32 @@ const router = createRouter({
       component: Lesscode,
       // redirect: { name: 'projects'},
       children: [
-        { path: 'home', name: 'home', component: Projects },
+        { path: 'home', name: 'home', component: ProjectManage },
         {
-          path: 'projects',
-          name: 'projects',
-          component: Projects,
+          path: 'ProjectManage',
+          name: 'ProjectManage',
+          component: ProjectManage,
         },
-        { path: 'marketplace', name: 'marketplace', component: Projects },
-        { path: 'op', name: 'op', component: Projects },
+        { path: 'marketplace', name: 'marketplace', component: ProjectManage },
+        { path: 'op', name: 'op', component: ProjectManage },
+        {
+            path: 'project/:projectId',
+            name: 'project-entry',
+            component: ProjectEntry,
+            meta: {
+              owner: 'projects'
+            },
+            redirect: { name: 'pageManage'},
+            children: [{
+              path: 'pageManage',
+              name: 'pageManage',
+              component: PageManage,
+              meta: {
+                title: '页面列表'
+              }
+            }]
+         },
+
       ]
     }
   ]
