@@ -20,8 +20,5 @@ auth.requestCurrentUser().then(() => {
   app.use(router)
 
   app.component('lesscode-header', LesscodeHeader)
-
-
-
   app.mount('#app')
 })

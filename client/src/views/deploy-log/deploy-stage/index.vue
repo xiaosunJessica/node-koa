@@ -4,10 +4,10 @@
 
 <template>
   <div>
-    content
+3333
   </div>
 </template>
 
-<style lang='less' scoped>
+<style lang='scss' scoped>
 
 </style>

@@ -47,7 +47,7 @@
     "cjs2esmodule": "^1.1.1",
     "cookie": "~0.4.0",
     "diagram-js-minimap": "^4.0.1",
-    "element-plus": "^2.2.32",
+    "element-plus": "^2.3.2",
     "element-ui": "^2.15.13",
     "eslint": "^8.34.0",
     "eslint-plugin-vue": "^9.9.0",

@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-import Content from './content/index.vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
 const navItems = [
@@ -30,8 +29,8 @@ const routerNameData = ['/home', '/help']
 </script>
 
 <template>
-  <lesscode-header></lesscode-header>
-  <Content></Content>
+  <lesscode-header />
+  <RouterView></RouterView>
 </template>
 
 <style lang="less" scoped>

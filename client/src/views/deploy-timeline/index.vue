@@ -16,7 +16,7 @@
         @mouseleave="handleMouseleave(item)"
       >
         <template v-if="isNeedIconcool(item)">
-          <round-loading
+          <div
             v-if="item.loading"
             ext-cls="paas-deploy-timeline-loading"
           />
@@ -31,7 +31,7 @@
           </div>
         </template>
         <template v-else>
-          <round-loading
+          <div
             v-if="item.status === 'pending'"
             ext-cls="paas-deploy-timeline-loading"
           />

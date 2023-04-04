@@ -97,7 +97,7 @@ export default {
       },
       commitsList: [],
       isDeploying: false,
-      isWatchDeploying: false,
+      isWatchDeploying: true,
       isLogError: false,
       deploymentInfo: null,
       lastDeploymentInfo: null,
@@ -2176,7 +2176,7 @@ export default {
         >
           <div class="wrapper primary">
             <div class="fl">
-              <round-loading
+              <div
                 size="small"
                 ext-cls="deploy-round-loading"
               />
@@ -2220,7 +2220,7 @@ export default {
         >
           <div class="wrapper primary">
             <div class="fl">
-              <round-loading
+              <div
                 size="small"
                 ext-cls="deploy-round-loading"
               />
@@ -2374,7 +2374,7 @@ export default {
         >
           <div class="wrapper warning">
             <div class="fl">
-              <round-loading
+              <div
                 size="small"
                 ext-cls="deploy-round-loading"
               />

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import Draw from '@/views/draw.vue';
 import Lesscode from '@/views/lesscode/index.vue';
+import Projects from '@/views/lesscode/project/index.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,11 +35,16 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: Lesscode,
+      // redirect: { name: 'projects'},
       children: [
-        { path: '/home', name: '产品介绍', component: Draw },
-        { path: '/project', name: '应用开发', component: Draw },
-        { path: '/marketplace', name: '资源市场', component: Draw },
-        { path: '/op', name: '运营数据', component: Draw },
+        { path: 'home', name: 'home', component: Projects },
+        {
+          path: 'projects',
+          name: 'projects',
+          component: Projects,
+        },
+        { path: 'marketplace', name: 'marketplace', component: Projects },
+        { path: 'op', name: 'op', component: Projects },
       ]
     }
   ]

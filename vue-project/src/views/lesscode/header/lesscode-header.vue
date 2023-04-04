@@ -7,25 +7,24 @@ const router = computed(() => {
   return useRouter()
 })
 const userInfo = storeToRefs(useUserStore());
-console.log(userInfo, '----')
 const menus = [
   {
-    to: '/home',
+    to: '/lesscode/home',
     name: '产品介绍',
     authed: true
   },
   {
-    to: '/projects',
+    to: '/lesscode/projects',
     name: '应用开发',
     authed: true
   },
   {
-    to: '/marketplace',
+    to: '/lesscode/marketplace',
     name: '资源市场',
     authed: true
   },
   {
-    to: '/op',
+    to: '/lesscode/op',
     name: '运营数据',
     authed: true
   }
@@ -53,73 +52,25 @@ const toProjectList = () => {
 
 <template>
    <header class="app-header">
-          <div class="logo" @click="toProjectList">
-              <img src="../images/logo.png" alt="logo">
-              蓝鲸可视化开发平台
-          </div>
-          <nav class="top-nav">
-              <ul class="menu">
-                  <router-link
-                      v-for="(menu, index) in menus"
-                      custom
-                      :to="menu.to"
-                      :key="index"
-                      v-slot="{ href, route, navigate, isActive }">
-                      <li :class="['menu-item', { active: isActive || isMenuActive(route) }]">
-                          <a :href="href" @click="navigate">{{ menu.name }}</a>
-                      </li>
-                  </router-link>
-              </ul>
-          </nav>
-          <div class="top-info">
-              <bk-popover class="info-item"
-                  theme="light header-top-info-popover"
-                  animation="fade"
-                  placement="bottom-end"
-                  :arrow="false"
-                  :distance="5"
-                  :tippy-options="{
-                    animateFill: false,
-                    hideOnClick: false
-                  }">
-                  <div :class="['info-help', { active: isRouteContains('help', $route) }]">
-                      <svg class="bk-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M32,4C16.5,4,4,16.5,4,32c0,3.6,0.7,7.1,2,10.4V56c0,1.1,0.9,2,2,2h13.6C36,63.7,52.3,56.8,58,42.4S56.8,11.7,42.4,6C39.1,4.7,35.6,4,32,4z M31.3,45.1c-1.7,0-3-1.3-3-3s1.3-3,3-3c1.7,0,3,1.3,3,3S33,45.1,31.3,45.1z M36.7,31.7c-2.3,1.3-3,2.2-3,3.9v0.9H29v-1c-0.2-2.8,0.7-4.4,3.2-5.8c2.3-1.4,3-2.2,3-3.8s-1.3-2.8-3.3-2.8c-1.8-0.1-3.3,1.2-3.5,3c0,0.1,0,0.1,0,0.2h-4.8c0.1-4.4,3.1-7.4,8.5-7.4c5,0,8.3,2.8,8.3,6.9C40.5,28.4,39.2,30.3,36.7,31.7z"></path>
-                      </svg>
-                  </div>
-                  <template v-slot:content>
-                      <router-link custom exact to="/help" v-slot="{ href, isActive }">
-                          <a :class="['popover-link', { active: isActive }]" target="_blank" :href="href">产品文档</a>
-                      </router-link>
-                      <!-- <a class="popover-link" href="javascript:;" @click="log.changeIsShow()">版本日志</a> -->
-                      <a class="popover-link" target="_blank" href="https://github.com/TencentBlueKing/bk-lesscode/issues">问题反馈</a>
-                      <a class="popover-link" target="_blank" href="https://github.com/TencentBlueKing/bk-lesscode/blob/master/readme.md">开源社区</a>
-                  </template>
-              </bk-popover>
-              <bk-popover class="info-item"
-                  theme="light header-top-info-popover"
-                  animation="fade"
-                  placement="bottom-end"
-                  :arrow="false"
-                  :distance="5"
-                  :tippy-options="{
-                    animateFill: false,
-                    hideOnClick: false
-                  }">
-                  <div class="info-user">
-                      <!-- <div>{{ userName }}</div> -->
-                      <i class="bk-drag-icon bk-drag-angle-up-fill"></i>
-                  </div>
-                  <template v-slot:content>
-                      <a class="popover-link" href="javascript:void(0)"
-                          @click="goLogin">
-                          退出登录
-                      </a>
-                  </template>
-              </bk-popover>
-          </div>
-          <changelog ref="log"></changelog>
-      </header>
+    <div class="logo" @click="toProjectList">
+        <img src="./" alt="logo">
+        蓝鲸可视化开发平台
+    </div>
+    <nav class="top-nav">
+      <ul class="menu">
+        <router-link
+            v-for="(menu, index) in menus"
+            custom
+            :to="menu.to"
+            :key="index"
+            v-slot="{ href, route, navigate, isActive }">
+            <li :class="['menu-item', { active: isActive || isMenuActive(route) }]">
+                <a :href="href" @click="navigate">{{ menu.name }}</a>
+            </li>
+        </router-link>
+      </ul>
+    </nav>
+  </header>
 </template>
 
 <style lang='scss' scoped>

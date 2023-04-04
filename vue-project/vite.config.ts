@@ -7,16 +7,27 @@ import commonjsExternals from 'vite-plugin-commonjs-externals';
 import requireTransform from 'vite-plugin-require-transform';
 // https://vitejs.dev/config/
 export default defineConfig({
-  logLevel: 'info',
+  logLevel: 'warn',
   server: {
     open: true,
     host: '0.0.0.0',
+    cors: true, // 允许跨域
     proxy: {
-      '*/api': {
-        target: 'http://localhost:4999/api',
+      '/api': {
+        target: 'http://localhost:4999',
         changeOrigin: true,
+        secure: false,
+      },
+      '/lesscode/api': {
+        target: 'http://localhost:4999',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/lesscode\/api/, '/api')
       },
     },
+  },
+  preview: {
+    port: 3001
   },
   plugins: [vue(), vueJsx(),
   //   commonjsExternals({
