@@ -31,10 +31,7 @@ const getUpdateInfoMessage: any =inject('getUpdateInfoMessage')
         </div>
         <div class="item-ft">
           <div class="col">
-            <h3 class="name" v-bk-tooltips="{
-              content: project.projectName,
-              disabled: !(project.projectName && project.projectName.length > 20)
-            }">{{ project.projectName }}</h3>
+            <h3 class="name">{{ project.projectName }}</h3>
             <div class="stat">{{ getUpdateInfoMessage(project) }}</div>
           </div>
           <div class="col">

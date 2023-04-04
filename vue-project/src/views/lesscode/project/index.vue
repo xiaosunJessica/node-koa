@@ -1,29 +1,47 @@
 <script setup lang='ts'>
 import { provide, reactive } from 'vue';
 import ListCard from './children/list-card.vue';
+import ProjectForm from './comps/project-form.vue';
 import useProjectStore from '@/stores/modules/project';
+import useLayoutStore from '@/stores/modules/layout';
 const projectStore = useProjectStore();
+const layoutStore = useLayoutStore();
 const getUpdateInfoMessage = () => {
   return '123344'
 }
 provide('getUpdateInfoMessage', getUpdateInfoMessage)
-const state = reactive({
+const state = reactive<{
+  projectList: any[],
+  pageMap: Object,
+  dialog: any,
+  defaultLayoutList: any[],
+  layoutFullList: any[]
+}>({
   projectList: [],
-  pageMap: {}
+  pageMap: {},
+  dialog: {
+    ['create']: {
+      projectType: '',
+      formData: {
+        projectName: '',
+        copyFrom: null,
+      },
+      visible: false
+    }
+  },
+  defaultLayoutList: [],
+  layoutFullList: []
 })
-let projectList: any = []
-let pageMap: any = {}
 
-
-
-const getProjectList = async () => {
-  const data = await projectStore.query()
-  console.log(data, 'datadatadata')
+const getProjectList = async (val?: string) => {
+  const data = await projectStore.query({
+    filter: val
+  })
   state.projectList = data.projectList
   state.pageMap = data.pageMap
 }
 
-getProjectList();
+
 
 
 const filterLinks = [
@@ -33,8 +51,43 @@ const filterLinks = [
 ]
 
 const handleClickFilter = (val?: string) => {
+  getProjectList(val)
+}
+
+const handleCreate = (type='newProject') => {
+  state.dialog.create.projectType = type
+  state.dialog.create.formData.projectName = ''
+  state.dialog.create.formData.copyFrom = null
+  state.dialog.create.visible = true
+}
+
+const handleCancel = (type = 'newProject') => {
+  state.dialog[type].visible = false
+}
+
+const handleCreateConfirm = () => {
 
 }
+
+const getDefaultLayout = async () => {
+  try {
+    const layoutList = await layoutStore.getPlatformList();
+    layoutList.forEach((item: any) => {
+      const isEmptyType = ['empty', 'mobile-empty'].includes(item.type)
+      item.isDefault = isEmptyType
+      item.checked = isEmptyType
+      item.disabled = isEmptyType
+    })
+    state.layoutFullList = layoutList
+    state.defaultLayoutList = state.layoutFullList.filter(item => item.type !== 'mobile-empty')
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+getProjectList()
+getDefaultLayout()
+
 </script>
 
 <template>
@@ -51,7 +104,7 @@ const handleClickFilter = (val?: string) => {
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item
-            @click=" handleClickFilter()">
+            @click=" handleCreate('newProject')">
             空白应用
           </el-dropdown-item>
           <el-dropdown-item
@@ -103,7 +156,7 @@ const handleClickFilter = (val?: string) => {
     </div>
 
     <!-- 应用列表 -->
-     <div :class="['page-body', { 'is-empty': !state.projectList.length }]" v-bkloading="{ opacity: 1 }">
+     <div :class="['page-body', { 'is-empty': !state.projectList.length }]">
       <div class="page-body-inner">
           <component
             :is="ListCard"
@@ -113,6 +166,27 @@ const handleClickFilter = (val?: string) => {
         </div>
       </div>
     <!-- 创建应用弹窗 -->
+    <el-dialog
+      v-model="state.dialog.create.visible"
+      title="新建应用"
+      width="750"
+      :auto-close="false"
+      header-position="left"
+    >
+      <project-form
+        ref="projectForm"
+        :type="state.dialog.create.projectType"
+        :form-data="state.dialog.create.formData"
+        :default-layout-list="state.defaultLayoutList" />
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="handleCancel('create')">取消</el-button>
+          <el-button type="primary" @click="handleCreateConfirm">
+            确认
+          </el-button>
+        </span>
+      </template>
+    </el-dialog>
     <!-- 应用重命名弹窗 -->
     <!-- 删除应用确认弹窗 -->
   </main>

@@ -4,6 +4,7 @@ const useProjectStore = defineStore({
   id: "project",
   state: () => {
     return {
+      project: {},
       currentProject: {}
     }
   },
@@ -33,7 +34,7 @@ const useProjectStore = defineStore({
     //   })
     // },
     query(params?: any) {
-      return http.get('/project/query').then((response: { data: string }) => {
+      return http.get('/project/query', {params}).then((response: { data: string }) => {
         const data = response.data || ''
         return data
       })

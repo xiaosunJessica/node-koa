@@ -19,12 +19,11 @@ const imgSrc = computed(() => {
 
 onMounted(() => {
   imgRef.value.onload = function() {
-    console.log(imgRef.value.complete, 'imgRef.valueimgRef.valueimgRef.value')
     isEmpty = imgRef.value.complete && imgRef.value.width === 1 && imgRef.value.height === 1
   }
   imgRef.value.onerror = function() {
-    // imgRef.value.src = preivewErrImg
-    // imgRef.value.onerror = null
+    imgRef.value.src = preivewErrImg
+    imgRef.value.onerror = null
   }
   imgRef.value.src = props.imgSrc || imgSrc.value
 
