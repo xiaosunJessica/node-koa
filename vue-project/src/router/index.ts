@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import Draw from '@/views/draw.vue';
 import Lesscode from '@/views/lesscode/index.vue';
-import Projects from '@/views/lesscode/project/index.vue';
+import Projects from '@/views/lesscode/project/project-manage/index.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

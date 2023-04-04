@@ -1,5 +1,6 @@
 <script setup lang='ts'>
-import { defineProps } from 'vue';
+import { defineProps, defineEmits } from 'vue';
+const $emit = defineEmits(['change-checked', 'set-default'])
 const props = defineProps<{
   list: any[],
 }>()
@@ -13,13 +14,13 @@ function handleClickItem(layout: any) {
   if (layout.disabled || !toolkit.includes('select')) {
     return
   }
-  // this.$emit('change-checked', layout)
+  $emit('change-checked', layout)
 }
 function handleSetDefault(layout: any) {
   if (!toolkit.includes('setdefault')) {
     return
   }
-  // this.$emit('set-default', layout)
+  $emit('set-default', layout)
 }
 function getPreviewImg(layout: any) {
   const previewImg = new URL(`../images/layout/preview-${layout.type}-s.png`, import.meta.url).href
@@ -50,7 +51,7 @@ function handlePreview(layout: any) {
         @click.stop="handleSetDefault(layout)"
       >设为默认</span>
       <div class="checkbox">
-        <i class="bk-icon icon-check-1 checked-icon"></i>
+        <el-icon class="icon-check-1 checked-icon"><Check /></el-icon>
       </div>
       <div
         class="layout-img"
@@ -162,7 +163,7 @@ function handlePreview(layout: any) {
               font-size: 12px;
               color: #fff;
               padding: 0 5px;
-
+              z-index: 1;
               &.checked {
                   background: #FFB848;
               }

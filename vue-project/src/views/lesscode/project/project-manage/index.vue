@@ -1,7 +1,7 @@
 <script setup lang='ts'>
-import { provide, reactive } from 'vue';
+import { provide, reactive, ref } from 'vue';
 import ListCard from './children/list-card.vue';
-import ProjectForm from './comps/project-form.vue';
+import ProjectForm from '../comps/project-form.vue';
 import useProjectStore from '@/stores/modules/project';
 import useLayoutStore from '@/stores/modules/layout';
 const projectStore = useProjectStore();
@@ -32,6 +32,8 @@ const state = reactive<{
   defaultLayoutList: [],
   layoutFullList: []
 })
+
+const projectFormRef = ref<any>(null);
 
 const getProjectList = async (val?: string) => {
   const data = await projectStore.query({
@@ -65,8 +67,25 @@ const handleCancel = (type = 'newProject') => {
   state.dialog[type].visible = false
 }
 
-const handleCreateConfirm = () => {
-
+const handleCreateConfirm = async () => {
+  // const data = this.$refs.projectForm.formData || {}
+  const data = projectFormRef.value.formData;
+  await projectFormRef.value.formRef.validate();
+  const layouts = state.layoutFullList.filter(layout => layout.checked || layout.type === 'mobile-empty').map(layout => {
+    return {
+      layoutId: layout.id,
+      routePath: layout.defaultPath,
+      isDefault: layout.isDefault,
+      showName: layout.defaultName,
+      layoutCode: layout.defaultCode,
+      content: layout.defaultContent,
+      layoutType: layout.layoutType
+    }
+  })
+  data.layouts = layouts
+  const res = await projectStore.create(data)
+  state.dialog.create.visible = false
+  console.log(res, 'resresres')
 }
 
 const getDefaultLayout = async () => {
@@ -174,10 +193,11 @@ getDefaultLayout()
       header-position="left"
     >
       <project-form
-        ref="projectForm"
+        ref="projectFormRef"
         :type="state.dialog.create.projectType"
         :form-data="state.dialog.create.formData"
-        :default-layout-list="state.defaultLayoutList" />
+        :default-layout-list="state.defaultLayoutList"
+        />
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="handleCancel('create')">取消</el-button>

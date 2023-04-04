@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import pagePreviewThumb from '../comps/page-preview-thumb.vue';
+import pagePreviewThumb from '../../comps/page-preview-thumb.vue';
 import { defineProps, inject } from 'vue';
 const props = defineProps<{
 projectList: any[],

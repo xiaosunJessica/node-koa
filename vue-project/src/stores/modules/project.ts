@@ -21,12 +21,12 @@ const useProjectStore = defineStore({
     projectDetail: state => state.currentProject
   },
   actions: {
-    // create() {
-    //   return http.post('/project/create', data, config).then(response => {
-    //     const data = response.data || ''
-    //     return data
-    //   })
-    // },
+    create(params?: any) {
+      return http.post('/project/create', params).then((response: { data: string }) => {
+        const data = response.data || ''
+        return data
+      })
+    },
     // import({ commit }, { data, config }) {
     //   return http.post('/project/import', data, config).then(response => {
     //     const data = response.data || ''
