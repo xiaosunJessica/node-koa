@@ -5,6 +5,7 @@ import Lesscode from '@/views/lesscode/index.vue';
 import ProjectManage from '@/views/lesscode/project/project-manage/index.vue';
 import PageManage from '@/views/lesscode/project/page-manage/index.vue';
 import ProjectEntry from '@/views/lesscode/project/entry/index.vue';
+import PageIndex from '@/views/lesscode/project/page-index/index.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -58,6 +59,23 @@ const router = createRouter({
               path: 'pageManage',
               name: 'pageManage',
               component: PageManage,
+              meta: {
+                title: '页面列表'
+              }
+            }]
+         },
+        {
+            path: 'project/:projectId/page/:pageId',
+            name: 'page-entry',
+            component: PageIndex,
+            meta: {
+              owner: 'projects'
+            },
+            redirect: { name: 'new'},
+            children: [{
+              path: '',
+              name: 'new',
+              component: PageIndex,
               meta: {
                 title: '页面列表'
               }

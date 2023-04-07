@@ -43,9 +43,6 @@ const getProjectList = async (val?: string) => {
   state.pageMap = data.pageMap
 }
 
-
-
-
 const filterLinks = [
   { name: '全部应用', value: '' },
   { name: '我创建的', value: 'my' },
