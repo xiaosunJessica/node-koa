@@ -7,5 +7,9 @@ declare module '*.vue' {
   export default componentOptions
 }
 
+interface Window {
+  __lesscodeEditPageGuide: any
+}
+
 // declare module '*'
 // declare module '@/*'
