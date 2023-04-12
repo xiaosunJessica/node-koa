@@ -9,7 +9,6 @@ const usePageStore = defineStore({
   },
   actions: {
     getPageList(params?: any) {
-      console.log(params, 'params')
       return http.get('/page/getList', {params}).then((response: any) => {
         const data = response.data || []
         return data

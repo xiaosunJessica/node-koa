@@ -1,12 +1,17 @@
 <script setup lang='ts'>
 import pagePreviewThumb from '../../comps/page-preview-thumb.vue';
-import { defineProps, inject } from 'vue';
+import { defineProps, inject, defineEmits } from 'vue';
 const props = defineProps<{
 projectList: any[],
 pageMap: any
 }>()
 
 const getUpdateInfoMessage: any =inject('getUpdateInfoMessage')
+const $emit = defineEmits(['to-page'])
+
+const handleGotoPage = (id: string) => {
+  $emit('to-page', id)
+}
 
 </script>
 
@@ -24,7 +29,10 @@ const getUpdateInfoMessage: any =inject('getUpdateInfoMessage')
             </div>
           </template>
           <div class="operate-btns">
-            <el-button class="edit-btn" theme="primary">开发应用</el-button>
+            <el-button
+              class="edit-btn"
+              theme="primary"
+              @click="handleGotoPage(project.id)">开发应用</el-button>
             <el-button class="preview-btn">预览</el-button>
             <el-button class="preview-btn">部署</el-button>
           </div>

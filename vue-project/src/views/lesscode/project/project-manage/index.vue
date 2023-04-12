@@ -4,6 +4,7 @@ import ListCard from './children/list-card.vue';
 import ProjectForm from '../comps/project-form.vue';
 import useProjectStore from '@/stores/modules/project';
 import useLayoutStore from '@/stores/modules/layout';
+import router from '@/router'
 const projectStore = useProjectStore();
 const layoutStore = useLayoutStore();
 const getUpdateInfoMessage = () => {
@@ -101,6 +102,15 @@ const getDefaultLayout = async () => {
   }
 }
 
+const handleGotoPage = (projectId: string) => {
+  router.push({
+    name: 'pageManage',
+    params: {
+      projectId
+    }
+  })
+}
+
 getProjectList()
 getDefaultLayout()
 
@@ -178,6 +188,7 @@ getDefaultLayout()
             :is="ListCard"
             :project-list="state.projectList"
             :page-map="state.pageMap"
+            @to-page="handleGotoPage"
           />
         </div>
       </div>
