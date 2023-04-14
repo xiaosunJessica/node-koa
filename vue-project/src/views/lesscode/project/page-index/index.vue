@@ -83,57 +83,57 @@ const guideStep: any = [
         }"             />
     </div>
     <!--编辑应用的普通页面-->
-    <template>
-      <draw-layout>
-        <material-panel v-slot="left" />
-      </draw-layout>
-      <notice-guide ref="guide" :data="guideStep"></notice-guide>
-    </template>
+    <draw-layout>
+      <template #left>
+        <material-panel />
+      </template>
+    </draw-layout>
+    <notice-guide ref="guide" :data="guideStep"></notice-guide>
   </main>
 </template>
 
 <style lang='scss' scoped>
  $headerHeight: 52px;
-    $pageHeaderHeight: 52px;
+ $pageHeaderHeight: 52px;
 
-    .lessocde-editor-page {
-        min-width: 1366px;
-        height: calc(100vh - $headerHeight);
-        margin-top: $headerHeight;
-    }
-    .lesscode-editor-page-header {
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        height: 52px;
-        background: #fff;
+  .lessocde-editor-page {
+      min-width: 1366px;
+      height: calc(100vh - $headerHeight);
+      margin-top: $headerHeight;
+  }
+  .lesscode-editor-page-header {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      height: 52px;
+      background: #fff;
 
-        &:after{
-            content: '';
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 99;
-            height: 1px;
-            box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
-        }
+      &:after{
+          content: '';
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 99;
+          height: 1px;
+          box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+      }
 
-        .function-and-tool {
-            position: relative;
-            display: flex;
-            flex: 1;
-            justify-content: center;
-            align-items: center;
-        }
-        .spilt-line {
-            height: 22px;
-            width: 1px;
-            margin: 0 5px;
-            background-color: #dcdee5;
-        }
-    }
-    .lesscode-editor-page-content{
-        height: calc(100vh - $headerHeight - $pageHeaderHeight);
-    }
+      .function-and-tool {
+          position: relative;
+          display: flex;
+          flex: 1;
+          justify-content: center;
+          align-items: center;
+      }
+      .spilt-line {
+          height: 22px;
+          width: 1px;
+          margin: 0 5px;
+          background-color: #dcdee5;
+      }
+  }
+  .lesscode-editor-page-content{
+      height: calc(100vh - $headerHeight - $pageHeaderHeight);
+  }
 </style>

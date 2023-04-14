@@ -72,7 +72,6 @@ const activeStep = () => {
   const windowHieght = window.innerHeight
   const currentStep: any = props.data[state.currentStepIndex]
   const $stepTarget = document.querySelector(currentStep.target)
-  console.log($stepTarget, '$stepTarget$stepTarget', currentStep.target)
   $stepTarget.classList.add('guide-highlight')
   if (typeof state.currentStep.leave === 'function') {
     state.currentStep.leave()
@@ -267,14 +266,14 @@ onMounted(() => {
   </transition>
 </template>
 
-<style lang='scss' scoped>
+<style lang='scss' >
   body{
-      *.guide-highlight{
-          opacity: 1 !important;
-          z-index: 100001 !important;
-          background: #fff;
-          pointer-events: none !important;
-      }
+   *.guide-highlight{
+        opacity: 1 !important;
+        z-index: 100001 !important;
+        background: #fff;
+        pointer-events: none !important;
+    }
   }
   .novice-guide{
       position: fixed;

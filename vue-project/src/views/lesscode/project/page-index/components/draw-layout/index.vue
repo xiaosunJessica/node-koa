@@ -10,17 +10,20 @@ const state = reactive({
   isRightCollapse: false
 })
 
+const pageDetail = {
+  nocodeType: ''
+}
+
+const pageType = '';
+
 const nocodeType = computed(() => {
-  return true
-  // return this.pageDetail.nocodeType || this.pageType || ''
+  return pageDetail.nocodeType || pageType || ''
 })
 const isNocodeForm = computed(() => {
-  return true
-  // return ['FORM', 'FLOW'].includes(this.nocodeType)
+  return ['FORM', 'FLOW'].includes(nocodeType.value)
 })
 const isDataManagePage = computed(() => {
-  return true
-  // return ['FORM_MANAGE', 'FLOW_MANAGE', 'MARKDOWN'].includes(this.nocodeType)
+  return ['FORM_MANAGE', 'FLOW_MANAGE', 'MARKDOWN'].includes(nocodeType.value)
 })
 
 const handleToggleLeft = () => {
