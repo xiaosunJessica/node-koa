@@ -6,8 +6,20 @@ import ExtraLinks from '../../components/ui/extra-links.vue';
 import DrawLayout from './components/draw-layout/index.vue';
 import NoticeGuide from '../../components/notice-guide/notice-guide.vue'
 import MaterialPanel from './components/material-panel/material-panel.vue'
+import usePageStore from '@/stores/modules/page';
+import { useRouter, useRoute } from 'vue-router';
+const route = useRoute();
+const projectId = route.params.projectId
+const pageId = route.params.pageId
+const pageStore = usePageStore();
 const handleStartGuide = () => {
 
+}
+
+const fetchData = async () => {
+  const [pageDetail] = await Promise.all([pageStore.detail({pageId})])
+  console.log(pageDetail, 'pageDetailpageDetail')
+  pageStore.setPageDetail(pageDetail)
 }
 
 const guideStep: any = [
@@ -62,6 +74,8 @@ const guideStep: any = [
     target: '#editPageSwitchPage'
   }
 ]
+
+fetchData();
 </script>
 
 <template>

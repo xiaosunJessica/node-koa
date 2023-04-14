@@ -37,7 +37,6 @@ const handlePanelChange = (panel: string) => {
 
     .panel-list{
         flex: 0 0 42px;
-        height: 100%;
     }
     .panel-content{
         flex: 0 0 calc(100% - 42px);

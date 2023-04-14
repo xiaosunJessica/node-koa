@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import { reactive, computed, type Component } from 'vue';
+import selectBaseComponent from './select-base-component.vue';
 import RenderBaseComponent from './render-base-component.vue';
 import RenderCustomComponent from './render-custom-component.vue';
 import ReanderIcon from './render-icon.vue';

@@ -13,7 +13,6 @@ import axios from 'axios'
 
 import CachedPromise from './cached-promise'
 import RequestQueue from './request-queue'
-import { bkMessage } from 'bk-magic-vue'
 
 // axios 实例
 const axiosInstance = axios.create({
@@ -167,7 +166,6 @@ function handleReject (error, config) {
     if (typeof config.handingError === 'function') {
         message = config.handingError(message)
     }
-    bkMessage({ theme: 'error', message })
     console.error(error)
     return Promise.reject(error)
 }

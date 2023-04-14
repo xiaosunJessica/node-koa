@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
-    "bk-magic-vue": "^2.5.3",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.18.6",

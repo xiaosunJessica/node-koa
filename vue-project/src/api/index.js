@@ -16,7 +16,6 @@ import RequestError from './request-error'
 import CachedPromise from './cached-promise'
 import RequestQueue from './request-queue'
 import { bus } from '../common/bus'
-// import { bkMessage } from 'bk-magic-vue'
 
 // 解析错误
 axios.interceptors.response.use(
