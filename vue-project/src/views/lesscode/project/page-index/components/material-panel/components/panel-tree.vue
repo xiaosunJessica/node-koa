@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    draw-layout
+tree
   </div>
 </template>
 

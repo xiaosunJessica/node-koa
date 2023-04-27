@@ -72,7 +72,7 @@ const activeStep = () => {
   const windowHieght = window.innerHeight
   const currentStep: any = props.data[state.currentStepIndex]
   const $stepTarget = document.querySelector(currentStep.target)
-  $stepTarget.classList.add('guide-highlight')
+  $stepTarget.classList.add('guide-highlight');
   if (typeof state.currentStep.leave === 'function') {
     state.currentStep.leave()
   }
@@ -91,7 +91,6 @@ const activeStep = () => {
       width,
       height
     } = tipRef.value.getBoundingClientRect()
-
     let placement = 'left'
     if (width > height
       && targeBottom < 0.3 * windowHieght) {

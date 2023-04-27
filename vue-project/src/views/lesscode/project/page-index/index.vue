@@ -7,7 +7,15 @@ import DrawLayout from './components/draw-layout/index.vue';
 import NoticeGuide from '../../components/notice-guide/notice-guide.vue'
 import MaterialPanel from './components/material-panel/material-panel.vue'
 import usePageStore from '@/stores/modules/page';
+import OperationArea from './components/operation-area/operation-area.vue';
+import ModifierPanel from './components/modifier-panel/modifier-panel.vue';
+import { reactive } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+const state = reactive({
+  isContentLoading: true,
+  isCustomComponentLoading: true,
+  operationType: 'edit',
+})
 const route = useRoute();
 const projectId = route.params.projectId
 const pageId = route.params.pageId
@@ -22,7 +30,14 @@ const fetchData = async () => {
   pageStore.setPageDetail(pageDetail)
 }
 
-const guideStep: any = [
+type GuideStepType = {
+  title: string
+  content: string
+  target: string
+  entry?: () => void
+  leave?: () => void
+}
+const guideStep: GuideStepType[] = [
   {
     title: '组件库和图标',
     content: '从基础组件、自定义业务组件、图标库中拖拽组件或图标到画布区域进行页面编排组装',
@@ -76,6 +91,42 @@ const guideStep: any = [
 ]
 
 fetchData();
+
+// let serverEvent = new EventSource('http://localhost:5173/stream', {
+//   withCredentials: true
+// })
+
+// serverEvent.onopen = (event) => {
+//   console.log(event, 'onopen----event00000')
+// }
+
+// // 消息推送
+// serverEvent.onmessage = (event) => {
+//   console.log(event, 'onmessage----event00000')
+// }
+
+// // 服务异常
+// serverEvent.onerror = (event) => {
+//   console.log(event, 'onerror----event00000')
+// }
+
+// const exampleSocket = new WebSocket(
+//   "ws://localhost:5173/websocket"
+// );
+
+// exampleSocket.onmessage = (event) => {
+//   console.log('onmessageonmessage')
+//   const data = JSON.parse(event.data)
+//   if (data?.id >= 3) {
+//     exampleSocket.close();
+//   }
+// }
+
+// exampleSocket.onerror = (event) => {
+//   console.log('onerror', event)
+// }
+
+
 </script>
 
 <template>
@@ -97,9 +148,13 @@ fetchData();
         }"             />
     </div>
     <!--编辑应用的普通页面-->
-    <draw-layout>
+    <draw-layout  class="lesscode-editor-page-content">
       <template #left>
         <material-panel />
+      </template>
+      <operation-area :operation="state.operationType" />
+      <template #right>
+        <modifier-panel />
       </template>
     </draw-layout>
     <notice-guide ref="guide" :data="guideStep"></notice-guide>

@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import draggable from 'vuedraggable'
 import { defineProps, reactive, ref } from 'vue';
 const newNode = ref();
 const props = defineProps({
@@ -25,19 +26,21 @@ const props = defineProps({
 })
 
 const state = reactive({
-    dragGroup: {
+  dragGroup: {
     name: 'component',
     pull: 'clone',
     put: false
   },
-  isFolded: props.folded
+  isFolded: props.folded,
+  dragging: false
 })
 
 const handleToggle = () => {
   state.isFolded = !state.isFolded
 }
 
-const handleChoose = (event: any) => {
+const handleChoose = (event: any,) => {
+  console.log('event', event)
   if (typeof props.createFallback === 'function') {
     newNode.value = props.createFallback(props.list, event.oldIndex)
   } else {
@@ -77,6 +80,8 @@ const handleChoose = (event: any) => {
 const cloneFunc = () => {
 
 }
+
+console.log(props.list, '---props.list----')
 </script>
 
 <template>
@@ -101,7 +106,7 @@ const cloneFunc = () => {
           scene="part">
           <span>暂无数据</span>
         </div>
-        <draggable
+        <!-- <draggable
             v-else
             :options="dragOptions"
             class="group-content"
@@ -114,7 +119,23 @@ const cloneFunc = () => {
             drag-class="source-drag"
             :clone="cloneFunc"
             @choose="handleChoose($event)">
-            <slot />
+            <template #item="{element}">
+              <slot />
+            </template>
+        </draggable> -->
+       <draggable
+          :list="list"
+          item-key="name"
+          :sort="false"
+          class="group-content"
+          ghost-class="source-ghost"
+          @choose="handleChoose($event, props.group)"
+          >
+          <template #item="{element}">
+            <div>
+              <slot name="test" :propsSlots="element"/>
+            </div>
+          </template>
         </draggable>
       </template>
   </div>

@@ -13,7 +13,6 @@ import "element-plus/theme-chalk/index.css"
 import "./theme/index.scss";
 
 
-
 auth.requestCurrentUser().then(() => {
   const app = createApp(App)
 

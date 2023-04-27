@@ -67,22 +67,33 @@ watch(() => props.baseComponent, () => {
 
 <template>
  <group-box
-      v-for="(comList, groupName) in state.renderGroupComponentMap"
-      :key="groupName"
-      :list="comList"
-      :group-name="groupName">
-      <!--slot展示内容-->
-      <template v-for="component in comList">
-        <render-icon
+    v-for="(comList, groupName) in state.renderGroupComponentMap"
+    :key="groupName"
+    :list="comList"
+    :group-name="groupName">
+    <!--slot展示内容-->
+    <template
+      #test="{ propsSlots }">
+       <render-icon
           v-if="groupName === '图标集合'"
-          :key="component.name"
-          :data="component" />
+          :key="propsSlots.name"
+          :data="propsSlots" />
         <render-component
           v-else
-          :key="component.name"
-          :data="component" />
-      </template>
-    </group-box>
+          :key="propsSlots.name"
+          :data="propsSlots" />
+    </template>
+    <!-- <template v-for="component in comList">
+      <render-icon
+        v-if="groupName === '图标集合'"
+        :key="component.name"
+        :data="component" />
+      <render-component
+        v-else
+        :key="component.name"
+        :data="component" />
+    </template> -->
+  </group-box>
 </template>
 
 <style lang='scss' scoped>

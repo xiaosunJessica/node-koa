@@ -1,13 +1,12 @@
 <script setup lang='ts'>
 import { defineProps, defineEmits } from 'vue'
-const $emits = defineEmits(['input', 'change'])
-defineProps({
-   value: String
+const $emits = defineEmits(['on-change'])
+const props = defineProps({
+   modelValue: String,
 })
 
 const handleChange = (value: string) => {
-  $emits('input', value)
-  $emits('change', value)
+  $emits('on-change', value)
 }
 </script>
 
@@ -16,7 +15,7 @@ const handleChange = (value: string) => {
     <div
         class="tab-item"
         :class="{
-          active: value === 'component'
+          active: props.modelValue === 'component'
         }"
         v-el-tooltips.right="'组件库'"
         role="component-panel-tab"
@@ -26,7 +25,7 @@ const handleChange = (value: string) => {
     <div
         class="tab-item"
         :class="{
-          active: value === 'template'
+          active: props.modelValue === 'template'
         }"
         v-el-tooltips.right="'页面模板管理'"
         role="template-panel-tab"
@@ -36,7 +35,7 @@ const handleChange = (value: string) => {
     <div
         class="tab-item"
         :class="{
-          active: value === 'tree'
+          active: props.modelValue === 'tree'
         }"
         v-el-tooltips.right="'页面组件树'"
         role="component-tree-panel-tab"

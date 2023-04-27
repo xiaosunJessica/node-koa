@@ -18,6 +18,17 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      '/stream': {
+        target: 'http://localhost:4999',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/websocket': {
+        target: 'http://localhost:4999',
+        changeOrigin: true,
+        secure: false,
+        ws: true
+      },
       '/lesscode/api': {
         target: 'http://localhost:4999',
         changeOrigin: true,

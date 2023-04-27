@@ -1,7 +1,9 @@
 <script setup lang='ts'>
 import SelectPanel from './components/select-panel.vue';
 import PanelComponent from './components/panel-component.vue';
-import { reactive } from 'vue';
+import PanelTemplate from './components/panel-template.vue';
+import PanelTree from './components/panel-tree.vue'
+import { reactive, computed, type Component } from 'vue';
 const state = reactive({
   isCollapse: false,
   activePanel: 'component'
@@ -13,6 +15,17 @@ const state = reactive({
 const handlePanelChange = (panel: string) => {
   state.activePanel = panel
 }
+
+const panelCom = computed(() => {
+  const comMap: {
+    [key: string]: Component
+  } = {
+    component: PanelComponent,
+    template: PanelTemplate,
+    tree: PanelTree
+  }
+  return comMap[state.activePanel]
+})
 </script>
 
 <template>
@@ -20,11 +33,11 @@ const handlePanelChange = (panel: string) => {
     id="editPageLeftSideBar"
     class="draw-page-material-panel">
     <select-panel
-        v-model="state.activePanel"
-        class="panel-list"
-        @on-change="handlePanelChange" />
+      v-model="state.activePanel"
+      class="panel-list"
+      @on-change="handlePanelChange" />
     <div class="panel-content">
-        <component :is="PanelComponent" />
+        <component :is="panelCom" />
     </div>
   </div>
 </template>
