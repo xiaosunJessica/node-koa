@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-import { defineProps, defineEmits } from 'vue'
 const $emits = defineEmits(['on-change'])
 const props = defineProps({
    modelValue: String,

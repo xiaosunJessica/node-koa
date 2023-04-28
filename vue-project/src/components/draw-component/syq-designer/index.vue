@@ -3,7 +3,7 @@ import initModeler from "./initModeler";
 import moduleAndExtensions from "./moduleAndExtensions";
 import { createNewDiagram } from "@/utils/xml";
 import { debounce } from "min-dash";
-import { defineProps, watch, reactive, nextTick, ref, getCurrentInstance } from "vue";
+import { watch, reactive, nextTick, ref, getCurrentInstance } from "vue";
 // import { mapGetters, useStore } from "vuex";
 const designerRef = ref(null);
 const props = defineProps({

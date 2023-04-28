@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import preivewErrImg from '@/images/preview-error.png'
-import { defineProps, computed, ref, onMounted } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 const props = defineProps<{
   projectId: Number,
   pageId?: Number,

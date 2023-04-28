@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import babel from "@rollup/plugin-babel"
 import commonjsExternals from 'vite-plugin-commonjs-externals';
 import requireTransform from 'vite-plugin-require-transform';
 // https://vitejs.dev/config/
@@ -41,6 +42,7 @@ export default defineConfig({
     port: 3001
   },
   plugins: [vue(), vueJsx(),
+
   //   commonjsExternals({
   //   externals: ['bk-magic-vue'],  //这里
   // }), requireTransform({
@@ -50,7 +52,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'shared': fileURLToPath(new URL('./src/views/lesscode/shared', import.meta.url))
     }
   }
 })

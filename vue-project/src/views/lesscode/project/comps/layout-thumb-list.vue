@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-import { defineProps, defineEmits } from 'vue';
 const $emit = defineEmits(['change-checked', 'set-default'])
 const props = defineProps<{
   list: any[],

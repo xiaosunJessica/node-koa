@@ -5,5 +5,11 @@
     "composite": true,
     "lib": [],
     "types": ["node", "jsdom"]
+  },
+  "baseUrl": "./",
+  "paths": {
+    "@/*": [
+      "/src/*"
+    ]
   }
 }

@@ -2,8 +2,8 @@
 import groupBox from '../common/group-box.vue';
 import renderIcon from '../common/render-icon.vue';
 import RenderComponent from '../common/render-component.vue'
-import MaterialConfig from '../../../../materials/index.js'
-import { reactive, defineProps, computed, watch, type Component } from 'vue';
+import MaterialConfig from '../../../../../element-materials/materials/index.js'
+import { reactive, computed, watch, type Component } from 'vue';
 const state = reactive({
   renderGroupComponentMap: {},
   searchList: []

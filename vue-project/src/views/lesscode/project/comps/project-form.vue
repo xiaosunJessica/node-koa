@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { reactive, computed, defineProps, defineExpose, ref } from 'vue';
+import { reactive, computed, ref } from 'vue';
 import layoutThumbList from './layout-thumb-list.vue';
 const formRef = ref<any>(null)
 

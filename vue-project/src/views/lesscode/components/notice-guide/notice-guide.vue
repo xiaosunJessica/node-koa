@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import _ from 'lodash'
 import cookie from 'cookie'
-import { defineProps, reactive, type StyleHTMLAttributes, computed, ref, getCurrentInstance, onMounted, onBeforeDestroy } from 'vue';
+import { reactive, type StyleHTMLAttributes, computed, ref, getCurrentInstance, onMounted } from 'vue';
 
 const CACHE_KEY = 'lesscode_supermen'
 const wraperRef = ref();
@@ -236,7 +236,7 @@ onMounted(() => {
         <div v-if="state.isShowFinisheDialog" class="guide-finished-box">
             <div class="wraper">
                 <div class="flag">
-                    <i class="bk-icon icon-check-1" />
+                    <i class="icon icon-check-1" />
                 </div>
                 <div style="font-size: 24px; line-height: 31px; color: #313238">恭喜完成学习!</div>
                 <div style="margin-top: 8px; font-size: 14px; line-height: 19px; color: #979BA5">{{ state.doneCountTime }} 秒后弹窗自动消失</div>
@@ -253,11 +253,11 @@ onMounted(() => {
                     <img :src="helpImg" style="width: 157px; height: 157px" />
                 </div>
                 <div style="margin-top: 27px">
-                  <bk-button theme="primary" class="mr10" @click="handleDone">确定</bk-button>
-                  <bk-button @click="handleCancelStop">取消</bk-button>
+                  <button theme="primary" class="mr10" @click="handleDone">确定</button>
+                  <button @click="handleCancelStop">取消</button>
                 </div>
                 <!-- <div class="cancal-btn" @click="handleCancelStop">
-                    <i class="bk-icon icon-close" />
+                    <i class="icon icon-close" />
                 </div> -->
             </div>
         </div>

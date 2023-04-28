@@ -1,7 +1,11 @@
 <script setup lang='ts'>
 import draggable from 'vuedraggable'
-import { defineProps, reactive, ref } from 'vue';
+import LC from '../../../../../element-materials/core/index.js'
+import * as createHacker from './hacker'
+import { reactive, ref } from 'vue';
+import useCommon from '@/stores/modules/common'
 const newNode = ref();
+const commonStore = useCommon()
 const props = defineProps({
   list: {
     type: Array,
@@ -44,42 +48,45 @@ const handleChoose = (event: any,) => {
   if (typeof props.createFallback === 'function') {
     newNode.value = props.createFallback(props.list, event.oldIndex)
   } else {
-    const materialConfig = props.list[event.oldIndex]
-    // const node = LC.createNode(materialConfig.type)
+    const materialConfig: any = props.list[event.oldIndex]
+    const node = LC.createNode(materialConfig.type)
 
-    // Object.values(createHacker).forEach((task:any) => task(node, materialConfig))
+    Object.values(createHacker).forEach((task:any) => task(node, materialConfig))
 
     // // 自定义组件
-    // if (this.curNameMap[node.type]) {
-    //   node.setProperty('isCustomComponent', true)
-    // }
+    console.log(commonStore.components.curNameMap?.[node.type], 'commonStore.components.curNameMap?.[node.type]')
+    if (commonStore.components.curNameMap?.[node.type]) {
+      node.setProperty('isCustomComponent', true)
+    }
     // // 交互式组件
     // if (LC.isInteractiveType(node.type)) {
     //   node.setProperty('isInteractiveComponent', true)
     // }
-    // newNode.value = node
+    newNode.value = node
   }
 
-  // let groupName = ''
+  let groupName = ''
 
-  // if (LC.isLayoutType(this.newNode.type)) {
-  //   groupName = 'layout'
-  // } else if (LC.isInteractiveType(this.newNode.type)) {
-  //   groupName = 'interactive'
-  // } else {
-  //   groupName = 'component'
-  // }
+  console.log(LC.isLayoutType(newNode.value.type), 'LC.isLayoutType(newNode.value.type)')
 
-  // this.dragGroup = Object.freeze({
-  //   ...this.dragGroup,
-  //   name: groupName
-  // })
+  if (LC.isLayoutType(newNode.value.type)) {
+    groupName = 'layout'
+  } else {
+    groupName = 'component'
+  }
+
+  state.dragGroup = Object.freeze({
+    ...state.dragGroup,
+    name: groupName
+  })
 
 }
 
 const cloneFunc = () => {
-
+  return newNode.value
 }
+
+
 
 console.log(props.list, '---props.list----')
 </script>
@@ -127,9 +134,11 @@ console.log(props.list, '---props.list----')
           :list="list"
           item-key="name"
           :sort="false"
+          :group="state.dragGroup"
           class="group-content"
           ghost-class="source-ghost"
-          @choose="handleChoose($event, props.group)"
+          :clone="cloneFunc"
+          @choose="handleChoose($event)"
           >
           <template #item="{element}">
             <div>
