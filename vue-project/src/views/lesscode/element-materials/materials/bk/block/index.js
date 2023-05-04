@@ -12,6 +12,7 @@
 export default {
     name: 'block',
     type: 'render-block',
+    cmpt: 'RenderBlock',
     displayName: '行',
     order: 1,
     icon: 'CreditCard',

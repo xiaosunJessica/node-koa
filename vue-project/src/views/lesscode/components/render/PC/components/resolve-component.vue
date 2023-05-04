@@ -22,16 +22,16 @@
       @contextmenu.stop="handleShowContextmenu">
       <render-component
           :ref="componentData.componentId"
-          :component-data="componentData" />
+          :component-data="componentData"
+          :test="1234" />
     </div>
 </template>
 
 
 <script setup lang="ts">
 import { reactive  } from 'vue';
-import RenderComponent from './render-component'
-import RenderBlock from './widget/block.vue'
-const props = defineProps({
+import RenderComponent from './render-component.vue'
+defineProps({
   componentData: {
     type: Object,
     required: true
@@ -42,9 +42,6 @@ const props = defineProps({
   }
 })
 
-const components = {
-  RenderBlock,
-}
 
 const safeStyles = {
   // fix: 影响子元素排版
@@ -134,6 +131,7 @@ const handleClick = () => {}
 const handleDBClick = () => {}
 
 const handleShowContextmenu = () => {}
+
 </script>
 <style lang="scss" module>
     .component {

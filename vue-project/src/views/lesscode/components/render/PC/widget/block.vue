@@ -13,11 +13,11 @@
     <draggable
         ref="draggable"
         :class="{
-            [$style['block']]: true,
-            [$style['empty']]: componentData.children.length < 1
+          [$style['block']]: true,
+          [$style['empty']]: componentData?.children?.length < 1
         }"
         :sort="true"
-        :list="componentData.slot.default"
+        :list="componentData?.slot?.default"
         :component-data="componentData"
         :group="{
             name: 'component',
@@ -27,17 +27,20 @@
                 'component'
             ]
         }">
-        <resolve-component
-            v-for="slotComponentData in componentData.slot.default"
-            ref="component"
-            :key="slotComponentData.renderKey"
-            :component-data="slotComponentData" />
+        <template #item="{element}">
+          <div>
+             <resolve-component
+                ref="component"
+                :key="element.renderKey"
+                :component-data="element" />
+          </div>
+        </template>
     </draggable>
 </template>
 <script setup lang="ts">
   import LC from '../../../../element-materials/core'
   import Draggable from '../components/draggable.vue'
-  import ResolveComponent from '../resolve-component.vue'
+  import ResolveComponent from '../components/resolve-component.vue'
 
   const props = defineProps({
     componentData: {
@@ -49,7 +52,7 @@
 
   const autoType =  (childNode: any) => {}
 </script>
-<style lang="postcss" module>
+<style lang="scss" module>
     .block{
         position: relative;
         border: 1px dashed #ccc;

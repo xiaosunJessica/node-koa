@@ -1,13 +1,13 @@
-import { defineComponent } from 'vue'
-import LC from '../../../element-materials/core'
+import LC from '../../../../element-materials/core'
 
 export default {
     name: 'render',
     functional: true,
     render (h, context) {
+        console.log(context.props, '----propsoooo', context)
         const {
             componentData
-        } = context.props
+        } = context.props || {}
 
         // fix: 修正部分样式在编辑时应用到实际的组件会产生偏差和重叠
         const baseComponentStyleReset = {
@@ -143,3 +143,4 @@ export default {
         }, renderSlotMap.default && renderSlotMap.default())
     }
 }
+

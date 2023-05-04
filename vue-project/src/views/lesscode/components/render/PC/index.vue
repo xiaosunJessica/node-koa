@@ -2,7 +2,6 @@
 import { onMounted, ref, reactive } from 'vue';
 import Draggable from './components/draggable.vue';
 import LC from '../../../element-materials/core'
-import ResolveComponent, { setMousedown } from './resolve-component.vue'
 const state = reactive({
   componentData: LC.getRoot() || { "componentId": "root-79620", "type": "root", "name": "root", "complex": false, "custom": false, "interactive": false, "renderDirectives": [], "renderEvents": {}, "renderProps": {}, "renderSlots": { "default": [] }, "renderStyles": {}, "renderAlign": {}, "renderPerms": [] },
   list: []

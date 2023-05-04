@@ -1,6 +1,7 @@
 <script  setup lang='ts'>
 import { reactive } from 'vue'
 import draggable from 'vuedraggable'
+import ResolveComponent from './resolve-component.vue'
 
 const props = defineProps({
   list: {
@@ -54,9 +55,16 @@ const handleChange = () => { }
         @change="handleChange"
         v-bind="$attrs">
        <template #item="{ element }">
-          <div>
-             {{element}}
-          </div>
+         <resolve-component
+            v-if="!element.isInteractiveComponent"
+            ref="component"
+            :key="element.renderKey"
+            :component-data="element" />
+        <!-- 交互式组件 -->
+        <resolve-interactive-component
+            v-else
+            :key="element.renderKey"
+            :component-data="element" />
       </template>
     </draggable>
 </template>
