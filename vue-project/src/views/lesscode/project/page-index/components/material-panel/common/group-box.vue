@@ -87,7 +87,7 @@ const cloneFunc = () => {
 
 <template>
     <div class="drag-group-box">
-      <div class="group-title" @click="handleToggle" v-bk-tooltips="{ content: groupName, disabled: !(groupName && groupName.length > 17), width: 400 }">
+      <div class="group-title" @click="handleToggle" :v-bk-tooltips="{ content: groupName, disabled: !(groupName && groupName.length > 17), width: 400 }">
           <el-icon
             :class="{
               floded: state.isFolded

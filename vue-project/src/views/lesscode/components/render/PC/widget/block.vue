@@ -14,7 +14,7 @@
         ref="draggable"
         :class="{
           [$style['block']]: true,
-          [$style['empty']]: componentData?.children?.length < 1
+          [$style['empty']]: (componentData?.children?.length || 0) < 1
         }"
         :sort="true"
         :list="componentData?.slot?.default"

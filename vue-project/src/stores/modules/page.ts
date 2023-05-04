@@ -17,7 +17,7 @@ const usePageStore = defineStore({
     platform: state => state.pageDetail.pageType ? state.pageDetail.pageType : 'PC',
   },
   actions: {
-    setPageDetail(page) {
+    setPageDetail(page: any) {
       this.pageDetail = Object.freeze(page)
     },
     getPageList(params?: any) {

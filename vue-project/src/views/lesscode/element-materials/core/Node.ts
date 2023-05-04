@@ -3,8 +3,8 @@ import { uuid } from 'lesscode/utils/util'
 // import { unitFilter } from 'shared/util.js'
 
 import toJSON from './extends/to-json'
-// import active from './extends/active'
-// import activeClear from './extends/active-clear'
+import active from './extends/active'
+import activeClear from './extends/active-clear'
 // import toggleInteractive from './extends/toggle-interactive'
 // import appendChild from './extends/append-child'
 // import insertBefore from './extends/insert-before'
@@ -13,13 +13,13 @@ import toJSON from './extends/to-json'
 // import removeChild from './extends/remove-child'
 // import cloneNode from './extends/clone-node'
 // import rerender from './extends/rerender'
-import setRenderSlots from './extends/set-render-slots'
+import setRenderSlots from './extends/set-render-slots.js'
 // import setRenderEvents from './extends/set-render-events'
 // import setRenderProps from './extends/set-render-props'
-import setRenderStyles from './extends/set-render-directives'
+import setRenderStyles from './extends/set-render-directives.js'
 // import setRenderDirectives from './extends/set-render-directives'
 // import setRenderAlign from './extends/set-render-align'
-// import setStyle from './extends/set-style'
+import setStyle from './extends/set-style.js'
 // import setProp from './extends/set-prop'
 // import setEvent from './extends/set-event'
 // import setAlign from './extends/set-align'
@@ -28,12 +28,12 @@ import setRenderStyles from './extends/set-render-directives'
 
 // import setRenderPerms from './extends/set-render-perms'
 
-// import {
-//     notify,
-//     readonly
-// } from './helper/decorator'
+import {
+    notify,
+    readonly
+} from './helper/decorator'
 
-import transformProps from './helper/transform-props'
+import transformProps from './helper/transform-props.js'
 import transformSlots from './helper/transform-slots'
 // import findParent from './helper/find-parent'
 // import flatneChildren from './helper/flatne-chilren'
@@ -56,12 +56,23 @@ import getMaterial from './static/get-material'
 
 import isLayoutType from './static/is-layout-type'
 
-// export let activeNode = null
+export let activeNode = null
 
 export default class Node {
+    $elm: null
+  componentId: string
+  name: string
+  type: string
+  cmpt: string
+  renderStyles: {}
+  renderProps: any
+  renderSlots: any
+  _isMounted: boolean
+  renderSlotKey: any
     constructor ({
         name = '',
         type = '',
+        cmpt = '',
         props = {},
         // directives = [],
         slots = {},
@@ -80,6 +91,7 @@ export default class Node {
         // this.renderSlotKey = uuid() // 设置 slot 时需要强制重现渲染 slot
         this.name = name
         this.type = type
+        this.cmpt = cmpt
         this.renderStyles = renderStyles
         this.renderProps = transformProps(props, renderProps, type)
         this.renderSlots = transformSlots(slots)
@@ -209,7 +221,7 @@ export default class Node {
     //  * @returns { Object }
     //  */
     get slot () {
-        const slot = Object.keys(this.renderSlots).reduce((result, key) => {
+        const slot = Object.keys(this.renderSlots).reduce((result: any, key) => {
             result[key] = this.renderSlots[key]
             return result
         }, {})
@@ -276,7 +288,7 @@ export default class Node {
     //  * @desc 组件被画布渲染
     //  * @param {Element} elm
     //  */
-    mounted (elm) {
+    mounted (elm: any) {
         this._isMounted = true
         this.$elm = elm
     }
@@ -293,9 +305,9 @@ export default class Node {
     //  * @param { Any } value 属性值
     //  * @returns { Node }
     //  */
-    // @readonly
-    // @notify
-    setProperty (key, value) {
+    @readonly
+    @notify
+    setProperty (key: any, value: any) {
         const setKeyList = [
             'tabPanelActive',
             'isInteractiveComponent',
@@ -312,27 +324,27 @@ export default class Node {
     //  * @desc 选中组件
     //  * @returns { Node }
     //  */
-    // @readonly
-    // @notify
-    // active () {
-    //     if (activeNode && activeNode !== this) {
-    //         activeNode.activeClear()
-    //     }
-    //     active(this)
-    //     activeNode = this
-    //     return this
-    // }
+    @readonly
+    @notify
+    active () {
+        if (activeNode && activeNode !== this) {
+            activeNode.activeClear()
+        }
+        active(this)
+        activeNode = this
+        return this
+    }
     // /**
     //  * @desc 取消选中组件
     //  * @returns { Node }
     //  */
-    // @readonly
-    // @notify
-    // activeClear () {
-    //     activeClear(this)
-    //     activeNode = null
-    //     return this
-    // }
+    @readonly
+    @notify
+    activeClear () {
+        activeClear(this)
+        activeNode = null
+        return this
+    }
 
     // /**
     //  * @desc 切换交互式组件的显示状态
@@ -447,12 +459,11 @@ export default class Node {
     //  * @param { String } slotName
     //  * @returns { Node }
     //  */
-    // @readonly
-    // @notify
-    setRenderSlots (slots, slotName = 'default') {
+    @readonly
+    @notify
+    setRenderSlots (slots: any, slotName = 'default') {
         this.renderSlotKey = uuid()
         setRenderSlots(this, slots, slotName)
-        console.log(this, 'setRenderSlotssetRenderSlotssetRenderSlots')
         return this
     }
 
@@ -510,12 +521,12 @@ export default class Node {
     //  * @param { Number | String } params2
     //  * @returns { Node }
     //  */
-    // @readonly
-    // @notify
-    // setStyle (params1, params2) {
-    //     setStyle(this, params1, params2)
-    //     return this
-    // }
+    @readonly
+    @notify
+    setStyle (params1: any, params2: any) {
+        setStyle(this, params1, params2)
+        return this
+    }
     // /**
     //  * @desc 设置 prop
     //  * @param { String | Object } params1

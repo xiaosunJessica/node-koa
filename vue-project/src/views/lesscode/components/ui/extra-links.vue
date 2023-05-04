@@ -20,7 +20,7 @@ defineProps({
 
 <template>
   <div class="extra-links">
-      <div v-if="showHelpBox" class="link-item help-box" @click="helpClick" v-el-tooltips="helpTooltips">
+      <div v-if="showHelpBox" class="link-item help-box" @click="helpClick" :v-el-tooltips="helpTooltips">
           <i class="dropdown-trigger-btn el-icon icon-question-circle-shape" />
       </div>
   </div>

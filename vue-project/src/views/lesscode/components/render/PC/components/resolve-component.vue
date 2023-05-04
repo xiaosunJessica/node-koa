@@ -22,8 +22,7 @@
       @contextmenu.stop="handleShowContextmenu">
       <render-component
           :ref="componentData.componentId"
-          :component-data="componentData"
-          :test="1234" />
+          :component-data="componentData" />
     </div>
 </template>
 

@@ -17,7 +17,7 @@ const state = reactive({
             class="component-info">
             <div
                 class="component-id"
-                v-bk-overflow-tips>
+                >
                 {{ state.componentId || '--' }}
             </div>
             <div class="action-wrapper">

@@ -58,7 +58,7 @@ const handleToggleRight = () => {
     <div
         v-if="!isDataManagePage"
         :class="[$style['collapsed-left-btn'], { [$style['collapsed-nocode-left-btn']]: isNocodeForm }]"
-        v-el-tooltips.right="{
+        :v-el-tooltips.right="{
           content: '查看所有组件',
           disabled: !state.isLeftCollapse
         }"
@@ -68,7 +68,7 @@ const handleToggleRight = () => {
     <div
         v-if="!hideRightSlot && !isDataManagePage"
         :class="$style['collapsed-right-btn']"
-        v-el-tooltips.right="{
+        :v-el-tooltips.right="{
           content: '查看组件配置',
           disabled: !state.isRightCollapse
         }"

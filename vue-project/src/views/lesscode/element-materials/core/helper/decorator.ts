@@ -1,22 +1,24 @@
+/* eslint-disable prefer-rest-params */
 import {
     triggerEventListener
-} from '../event'
+} from '../event.js'
 
-export function readonly (target, name, descriptor) {
+export function readonly (target: any, name: any, descriptor: any) {
     descriptor.writable = false
     return descriptor
 }
 
-export function notify (target, name, descriptor) {
+export function notify (target: any, name: any, descriptor: any) {
     const fn = descriptor.value
     descriptor.value = function () {
         const isActived = this.isActived
+        // eslint-disable-next-line prefer-rest-params
         const result = fn.apply(this, arguments)
         // 节点没有被添加到Node tree 中不触发事件
         if (!this.parentNode && !this.root) {
             return result
         }
-        const event = {
+        const event: any = {
             type: name,
             target: this
         }
@@ -35,6 +37,7 @@ export function notify (target, name, descriptor) {
             triggerEventListener('update', event)
         }
 
+        console.log('name-----namemmmm')
         if (name === 'toggleInteractive') {
             event.interactiveShow = this.interactiveShow
             triggerEventListener('toggleInteractive', event)

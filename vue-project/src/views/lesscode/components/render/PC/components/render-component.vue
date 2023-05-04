@@ -1,8 +1,13 @@
 <!-- eslint-disable vue/no-mutating-props -->
 <script lang="ts">
-  import { h, defineComponent } from 'vue'
+  import { h, defineComponent, type Component } from 'vue'
   import LC from '../../../../element-materials/core'
   import RenderBlock from '../widget/block.vue'
+  const mapCmpt: {
+    [key: string]: Component
+  } = {
+    'RenderBlock': RenderBlock
+  }
   export default {
       props: {
          componentData: {}
@@ -142,12 +147,14 @@
             return result
           }, {})
 
-          return h(componentData.cmpt, {
+          return h(mapCmpt[componentData.cmpt], {
             props,
             attrs,
             on: events,
             scopedSlots: renderSlotMap,
-            style: Object.assign({}, componentData.style, baseComponentStyleReset)
+            style: Object.assign({
+              color: 'red'
+            }, componentData.style, baseComponentStyleReset)
           }, renderSlotMap.default && renderSlotMap.default())
         }
       }

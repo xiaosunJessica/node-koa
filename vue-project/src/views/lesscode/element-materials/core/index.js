@@ -2,7 +2,7 @@ import parseData from './static/parse-data'
 // import parseTemplate from './static/parse-template'
 import getRoot from './static/get-root'
 // import getMaterial, { registerMaterial, unregisterMaterial } from './static/get-material'
-// import getActiveNode from './static/get-active-node'
+import getActiveNode from './static/get-active-node'
 // import getNodeById from './static/get-node-by-id'
 // import getNodesByType from './static/get-nodes-by-type'
 import createNode from './static/create-node'
@@ -29,7 +29,7 @@ import {
 //     clearMenu
 // } from './menu'
 
-// import { execCommand } from './helper/commands'
+import { execCommand } from './helper/commands'
 
 // import {
 //     getPageStyle,
@@ -60,7 +60,7 @@ core.parseData = parseData
 // // NodeTree 操作 api
 core.getRoot = getRoot
 // core.getMaterial = getMaterial
-// core.getActiveNode = getActiveNode
+core.getActiveNode = getActiveNode
 // core.getNodeById = getNodeById
 // core.getNodesByType = getNodesByType
 core.isNode = isNode
@@ -73,16 +73,16 @@ core.createNode = createNode
 // core.appendChild = appendChild
 // core.removeChild = removeChild
 
-// core.addEventListener = addEventListener
-// core.removeEventListener = removeEventListener
-// core.triggerEventListener = triggerEventListener
+core.addEventListener = addEventListener
+core.removeEventListener = removeEventListener
+core.triggerEventListener = triggerEventListener
 
 // // 右键快捷面板
 // core.showMenu = showMenu
 // core.clearMenu = clearMenu
 
 // // 执行快捷命令
-// core.execCommand = execCommand
+core.execCommand = execCommand
 
 // // platform: 'PC' | 'MOBILE'
 // core.platform = 'PC'

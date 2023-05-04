@@ -2,6 +2,7 @@
 import { reactive } from 'vue'
 import draggable from 'vuedraggable'
 import ResolveComponent from './resolve-component.vue'
+import LC from '../../../../element-materials/core'
 
 const props = defineProps({
   list: {
@@ -9,10 +10,10 @@ const props = defineProps({
     required: false,
     default: null
   },
-  // componentData: {
-  //   type: Object,
-  //   required: true
-  // },
+  componentData: {
+    type: Object,
+    required: true
+  },
   ghostClass: String,
   group: {
     type: Object,
@@ -35,7 +36,48 @@ const handleStart = () => {
 const handleEnd = () => { }
 const handleAdd = () => { }
 const handleSort = () => { }
-const handleChange = () => { }
+const handleChange = (event: any) => {
+  let operationNode: any = null
+  const triggerEvent = {
+    target: props.componentData,
+    type: '',
+    child: null
+  }
+  if (event.added) {
+    operationNode = event.added.element
+    triggerEvent.type = 'appendChild'
+    // 拖动组件需要重置会影响排版的样式
+    operationNode.setStyle({
+      position: '',
+      top: '',
+      right: '',
+      bottom: '',
+      left: '',
+      zIndex: '',
+      marginTop: '',
+      marginRight: '',
+      marginBottom: '',
+      marginLeft: ''
+    })
+    setTimeout(() => {
+      // 新加的组件默认选中
+      operationNode.active()
+    }, 100)
+  } else if (event.removed) {
+    operationNode = event.removed.element
+    triggerEvent.type = 'removeChild'
+  } else if (event.moved) {
+    operationNode = event.moved.element
+    triggerEvent.type = 'moveChild'
+  }
+
+  triggerEvent.child = operationNode
+  LC.triggerEventListener(triggerEvent.type, triggerEvent)
+  LC.triggerEventListener('update', triggerEvent)
+  // fix: vue-draggable 内部索引不更新的问题
+  // this.$refs.draggable.computeIndexes()
+  // this.$emit('change', event)
+}
 </script>
 <template>
     <draggable

@@ -38,3 +38,7 @@ export function uuid(len = 5, radix = 16) {
 
   return uuid.join('')
 }
+
+export const miniLimited = (value, limit) => {
+  return parseInt(value) < parseInt(limit) ? parseInt(limit) : parseInt(value)
+}

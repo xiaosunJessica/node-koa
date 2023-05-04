@@ -2,6 +2,7 @@
 import { onMounted, ref, reactive } from 'vue';
 import Draggable from './components/draggable.vue';
 import LC from '../../../element-materials/core'
+import LesscodeTools from './tools/lesscode-tool/index.vue'
 const state = reactive({
   componentData: LC.getRoot() || { "componentId": "root-79620", "type": "root", "name": "root", "complex": false, "custom": false, "interactive": false, "renderDirectives": [], "renderEvents": {}, "renderProps": {}, "renderSlots": { "default": [] }, "renderStyles": {}, "renderAlign": {}, "renderPerms": [] },
   list: []
@@ -25,7 +26,6 @@ onMounted(() => {
 
 <template>
    <layout>
-    <div>PC{{  state.componentData.slot.default }}</div>
       <div
           id="drawTarget"
           ref="rootRef"
@@ -47,10 +47,10 @@ onMounted(() => {
               }">
 
         </draggable>
-          <!-- <lesscode-focus />
+          <lesscode-focus />
           <lesscode-tools />
           <lesscode-resize />
-          <lesscode-margin /> -->
+          <lesscode-margin />
       </div>
       <!-- <div
           v-if="showNotVisibleMask"

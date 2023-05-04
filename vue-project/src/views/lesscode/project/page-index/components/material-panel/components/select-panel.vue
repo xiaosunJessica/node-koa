@@ -16,7 +16,7 @@ const handleChange = (value: string) => {
         :class="{
           active: props.modelValue === 'component'
         }"
-        v-el-tooltips.right="'组件库'"
+        :v-el-tooltips.right="'组件库'"
         role="component-panel-tab"
         @click="handleChange('component')">
        <el-icon><Menu /></el-icon>
@@ -26,7 +26,7 @@ const handleChange = (value: string) => {
         :class="{
           active: props.modelValue === 'template'
         }"
-        v-el-tooltips.right="'页面模板管理'"
+        :v-el-tooltips.right="'页面模板管理'"
         role="template-panel-tab"
         @click="handleChange('template')">
        <el-icon><Tools /></el-icon>
@@ -36,7 +36,7 @@ const handleChange = (value: string) => {
         :class="{
           active: props.modelValue === 'tree'
         }"
-        v-el-tooltips.right="'页面组件树'"
+        :v-el-tooltips.right="'页面组件树'"
         role="component-tree-panel-tab"
         @click="handleChange('tree')">
         <el-icon><Histogram /></el-icon>
