@@ -30,6 +30,7 @@
 <script setup lang="ts">
 import { reactive  } from 'vue';
 import RenderComponent from './render-component'
+import RenderBlock from './widget/block.vue'
 const props = defineProps({
   componentData: {
     type: Object,
@@ -40,6 +41,10 @@ const props = defineProps({
     default: false
   }
 })
+
+const components = {
+  RenderBlock,
+}
 
 const safeStyles = {
   // fix: 影响子元素排版

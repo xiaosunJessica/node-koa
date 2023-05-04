@@ -11,6 +11,7 @@ import OperationArea from './components/operation-area/operation-area.vue';
 import ModifierPanel from './components/modifier-panel/modifier-panel.vue';
 import { reactive } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+import LC from '../../element-materials/core'
 const state = reactive({
   isContentLoading: true,
   isCustomComponentLoading: true,
@@ -26,8 +27,11 @@ const handleStartGuide = () => {
 
 const fetchData = async () => {
   const [pageDetail] = await Promise.all([pageStore.detail({pageId})])
+  console.log('------父')
+
   console.log(pageDetail, 'pageDetailpageDetail')
   pageStore.setPageDetail(pageDetail)
+  LC.parseData(pageDetail.content)
 }
 
 type GuideStepType = {
@@ -91,7 +95,6 @@ const guideStep: GuideStepType[] = [
 ]
 
 fetchData();
-
 // let serverEvent = new EventSource('http://localhost:5173/stream', {
 //   withCredentials: true
 // })

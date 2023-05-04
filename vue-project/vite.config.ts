@@ -53,7 +53,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      'shared': fileURLToPath(new URL('./src/views/lesscode/shared', import.meta.url))
+      'shared': fileURLToPath(new URL('./src/views/lesscode/shared', import.meta.url)),
+      'lesscode': fileURLToPath(new URL('./src/views/lesscode', import.meta.url))
     }
   }
 })

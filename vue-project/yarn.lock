@@ -4015,6 +4015,11 @@
   dependencies:
     "brace-expansion" "^2.0.1"
 
+"mitt@^3.0.0":
+  "integrity" "sha1-ae+b1cgP9vV0c+jYkybQHEFL4L0="
+  "resolved" "http://172.16.0.124:30040/mitt/-/mitt-3.0.0.tgz"
+  "version" "3.0.0"
+
 "mlly@^1.1.0", "mlly@^1.1.1":
   "integrity" "sha512-+c7A3CV0KGdKcylsI6khWyts/CYrGTrRVo4R/I7u/cUsy0Conxa6LUhiEzVKIw14lc2L5aiO4+SeVe4TeGRKww=="
   "resolved" "https://registry.npmmirror.com/mlly/-/mlly-1.2.0.tgz"

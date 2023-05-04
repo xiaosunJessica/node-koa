@@ -1,4 +1,4 @@
-// import parseData from './static/parse-data'
+import parseData from './static/parse-data'
 // import parseTemplate from './static/parse-template'
 import getRoot from './static/get-root'
 // import getMaterial, { registerMaterial, unregisterMaterial } from './static/get-material'
@@ -17,12 +17,12 @@ import isLayoutType from './static/is-layout-type'
 // import appendChild from './extends/append-child'
 // import removeChild from './extends/remove-child'
 
-// import {
-//     resetEventListener,
-//     addEventListener,
-//     removeEventListener,
-//     triggerEventListener
-// } from './event'
+import {
+    resetEventListener,
+    addEventListener,
+    removeEventListener,
+    triggerEventListener
+} from './event'
 
 // import {
 //     showMenu,
@@ -53,7 +53,7 @@ function core (id) {
 // core.__isUnloaded = false
 // core.__isMounted = false
 // // 数据解析 JSON -> NodeTree
-// core.parseData = parseData
+core.parseData = parseData
 // core.parseTemplate = parseTemplate
 // // 扩展 material 注册
 // core.registerMaterial = registerMaterial
@@ -87,11 +87,11 @@ core.createNode = createNode
 // // platform: 'PC' | 'MOBILE'
 // core.platform = 'PC'
 
-// core._ready = () => {
-//     core.__isUnloaded = false
-//     core.__isReady = true
-//     triggerEventListener('ready')
-// }
+core._ready = () => {
+    core.__isUnloaded = false
+    core.__isReady = true
+    triggerEventListener('ready')
+}
 
 // core._unload = () => {
 //     if (core.__isUnloaded) {
@@ -112,10 +112,10 @@ core.createNode = createNode
 //     triggerEventListener('unload')
 // }
 
-// core._mounted = () => {
-//     core.__isMounted = true
-//     triggerEventListener('mounted')
-// }
+core._mounted = () => {
+    core.__isMounted = true
+    triggerEventListener('mounted')
+}
 
 Object.defineProperty(core, 'pageStyle', {
     set (value) {

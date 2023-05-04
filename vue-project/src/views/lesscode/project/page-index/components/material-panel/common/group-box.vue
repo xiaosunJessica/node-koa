@@ -44,7 +44,6 @@ const handleToggle = () => {
 }
 
 const handleChoose = (event: any,) => {
-  console.log('event', event)
   if (typeof props.createFallback === 'function') {
     newNode.value = props.createFallback(props.list, event.oldIndex)
   } else {
@@ -54,7 +53,6 @@ const handleChoose = (event: any,) => {
     Object.values(createHacker).forEach((task:any) => task(node, materialConfig))
 
     // // 自定义组件
-    console.log(commonStore.components.curNameMap?.[node.type], 'commonStore.components.curNameMap?.[node.type]')
     if (commonStore.components.curNameMap?.[node.type]) {
       node.setProperty('isCustomComponent', true)
     }
@@ -67,7 +65,6 @@ const handleChoose = (event: any,) => {
 
   let groupName = ''
 
-  console.log(LC.isLayoutType(newNode.value.type), 'LC.isLayoutType(newNode.value.type)')
 
   if (LC.isLayoutType(newNode.value.type)) {
     groupName = 'layout'
@@ -86,9 +83,6 @@ const cloneFunc = () => {
   return newNode.value
 }
 
-
-
-console.log(props.list, '---props.list----')
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 <script setup lang='ts'>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import Render from '../../../../components/render/index.vue'
+import LC from '../../../../element-materials/core'
 const rootRef = ref();
 let renderStyles = ref()
 const getOffset = (target: any) => {
@@ -45,9 +46,16 @@ const props = defineProps({
 onMounted(() => {
   calcRenderStyles()
 })
+
+const isTips = computed(() => {
+  LC.getRoot()
+  return false
+})
+
 </script>
 
 <template>
+  <div v-if="isTips"></div>
   <div
     ref="rootRef"
     id="lesscodeDrawHorizontalWrapper"

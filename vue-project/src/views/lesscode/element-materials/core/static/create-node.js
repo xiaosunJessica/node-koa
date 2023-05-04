@@ -34,6 +34,7 @@ const parseTemplateTree = (templateRoot) => {
  * @returns { Node }
  */
 export default function (elementType, parseSlot = true) {
+    console.log('createNodecreateNodecreateNode')
     const node = createNode(elementType)
     if (!node) {
         return node

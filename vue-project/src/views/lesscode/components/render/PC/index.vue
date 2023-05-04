@@ -1,9 +1,13 @@
 <script setup lang='ts'>
+import { onMounted, ref, reactive } from 'vue';
 import Draggable from './components/draggable.vue';
 import LC from '../../../element-materials/core'
 import ResolveComponent, { setMousedown } from './resolve-component.vue'
-const  componentData: any = LC.getRoot()
-console.log(componentData, 'componentDatacomponentData', componentData?.children?.length < 1)
+const state = reactive({
+  componentData: LC.getRoot() || { "componentId": "root-79620", "type": "root", "name": "root", "complex": false, "custom": false, "interactive": false, "renderDirectives": [], "renderEvents": {}, "renderProps": {}, "renderSlots": { "default": [] }, "renderStyles": {}, "renderAlign": {}, "renderPerms": [] },
+  list: []
+})
+const rootRef = ref()
 const handleCanvaseClick = () => {
 
 }
@@ -13,16 +17,21 @@ const handleMouseleave = () => {
 }
 
 const handleShowContextmenu = () => {}
+
+onMounted(() => {
+  // componentData.value.mounted(rootRef)
+  LC._mounted()
+})
 </script>
 
 <template>
    <layout>
+    <div>PC{{  state.componentData.slot.default }}</div>
       <div
           id="drawTarget"
-          ref="root"
+          ref="rootRef"
           :class="{
             [$style['canvas']]: true,
-            [$style['empty']]: componentData?.children?.length < 1
           }"
           @click="handleCanvaseClick"
           @mouseleave="handleMouseleave"
@@ -31,28 +40,13 @@ const handleShowContextmenu = () => {}
             ref="dragArea"
             class="target-drag-area"
             :class="[$style['drag-area']]"
-            :component-data="componentData"
-            :list="componentData?.slot?.default || []"
-            :sort="true"
+            :list="state.list"
             :group="{
                 name: 'layout',
                 pull: true,
                 put: true
               }">
-            <template v-for="componentNode in componentData?.slot?.default">
-                <!-- root 的子组件只会是布局组件和交互式组件 -->
-                <!-- 布局组件 -->
-                <resolve-component
-                    v-if="!componentNode.isInteractiveComponent"
-                    ref="component"
-                    :key="componentNode.renderKey"
-                    :component-data="componentNode" />
-                <!-- 交互式组件 -->
-                <!-- <resolve-interactive-component
-                    v-else
-                    :key="componentNode.renderKey"
-                    :component-data="componentNode" /> -->
-            </template>
+
         </draggable>
           <!-- <lesscode-focus />
           <lesscode-tools />

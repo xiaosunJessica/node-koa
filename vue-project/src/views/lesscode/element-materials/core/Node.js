@@ -1,8 +1,8 @@
 import _ from 'lodash'
-// import { uuid } from '@/common/util'
+import { uuid } from 'lesscode/utils/util'
 // import { unitFilter } from 'shared/util.js'
 
-// import toJSON from './extends/to-json'
+import toJSON from './extends/to-json'
 // import active from './extends/active'
 // import activeClear from './extends/active-clear'
 // import toggleInteractive from './extends/toggle-interactive'
@@ -13,10 +13,10 @@ import _ from 'lodash'
 // import removeChild from './extends/remove-child'
 // import cloneNode from './extends/clone-node'
 // import rerender from './extends/rerender'
-// import setRenderSlots from './extends/set-render-slots'
+import setRenderSlots from './extends/set-render-slots'
 // import setRenderEvents from './extends/set-render-events'
 // import setRenderProps from './extends/set-render-props'
-// import setRenderStyles from './extends/set-render-styles'
+import setRenderStyles from './extends/set-render-directives'
 // import setRenderDirectives from './extends/set-render-directives'
 // import setRenderAlign from './extends/set-render-align'
 // import setStyle from './extends/set-style'
@@ -33,8 +33,8 @@ import _ from 'lodash'
 //     readonly
 // } from './helper/decorator'
 
-// import transformProps from './helper/transform-props'
-// import transformSlots from './helper/transform-slots'
+import transformProps from './helper/transform-props'
+import transformSlots from './helper/transform-slots'
 // import findParent from './helper/find-parent'
 // import flatneChildren from './helper/flatne-chilren'
 // import {
@@ -52,9 +52,9 @@ import _ from 'lodash'
 // import { toHyphenate } from './helper/utils'
 
 // import getRoot from './static/get-root'
-// import getMaterial from './static/get-material'
+import getMaterial from './static/get-material'
 
-// import isLayoutType from './static/is-layout-type'
+import isLayoutType from './static/is-layout-type'
 
 // export let activeNode = null
 
@@ -68,21 +68,21 @@ export default class Node {
         renderStyles = {},
         renderProps = {}
     }) {
-        // const uid = uuid()
+        const uid = uuid()
         // // 只有刚被拖入才会是 false，画布重新渲染（页面刷新）一直是 true
         // this._isMounted = false
         // // 组件被渲染时对应画布中的根原素
-        // this.$elm = null
+        this.$elm = null
 
         // this.tabPanelActive = 'props' // 默认tab选中的面板
-        // this.componentId = `${name}-${uid}`
+        this.componentId = `${name}-${uid}`
         // this.renderKey = uuid()
         // this.renderSlotKey = uuid() // 设置 slot 时需要强制重现渲染 slot
-        // this.name = name
+        this.name = name
         this.type = type
-        // this.renderStyles = renderStyles
-        // this.renderProps = transformProps(props, renderProps, type)
-        // this.renderSlots = transformSlots(slots)
+        this.renderStyles = renderStyles
+        this.renderProps = transformProps(props, renderProps, type)
+        this.renderSlots = transformSlots(slots)
         // this.renderDirectives = []
         // this.renderEvents = {}
         // this.renderAlign = {}
@@ -111,16 +111,16 @@ export default class Node {
     //  * @desc 组件 material 配置
     //  * @returns { Object }
     //  */
-    // get material () {
-    //     return getMaterial(this.type, this.name)
-    // }
+    get material () {
+        return getMaterial(this.type, this.name)
+    }
     // /**
     //  * @desc 布局类型的组件
     //  * @returns { Boolean }
     //  */
-    // get layoutType () {
-    //     return isLayoutType(this.type)
-    // }
+    get layoutType () {
+        return isLayoutType(this.type)
+    }
     // /**
     //  * @desc 组件的slot支持拖拽
     //  * @returns { Boolean }
@@ -208,13 +208,17 @@ export default class Node {
     //  * @desc 组件 slot
     //  * @returns { Object }
     //  */
-    // get slot () {
-    //     const slot = Object.keys(this.renderSlots).reduce((result, key) => {
-    //         result[key] = this.renderSlots[key]
-    //         return result
-    //     }, {})
-    //     return Object.seal(slot)
-    // }
+    get slot () {
+        const slot = Object.keys(this.renderSlots).reduce((result, key) => {
+            result[key] = this.renderSlots[key]
+            return result
+        }, {})
+
+        if (!slot.default) {
+          slot.default = []
+        }
+        return Object.seal(slot)
+    }
     // get align () {
     //     const align = {
     //         horizontal: '',
@@ -272,17 +276,17 @@ export default class Node {
     //  * @desc 组件被画布渲染
     //  * @param {Element} elm
     //  */
-    // mounted (elm) {
-    //     this._isMounted = true
-    //     this.$elm = elm
-    // }
+    mounted (elm) {
+        this._isMounted = true
+        this.$elm = elm
+    }
     // /**
     //  * @desc 获取节点的 JSON 数据
     //  * @returns { Boolean }
     //  */
-    // toJSON () {
-    //     return toJSON(this)
-    // }
+    toJSON () {
+        return toJSON(this)
+    }
     // /**
     //  * @desc 设置节点属性
     //  * @param { String } key 属性名
@@ -445,11 +449,12 @@ export default class Node {
     //  */
     // @readonly
     // @notify
-    // setRenderSlots (slots, slotName = 'default') {
-    //     this.renderSlotKey = uuid()
-    //     setRenderSlots(this, slots, slotName)
-    //     return this
-    // }
+    setRenderSlots (slots, slotName = 'default') {
+        this.renderSlotKey = uuid()
+        setRenderSlots(this, slots, slotName)
+        console.log(this, 'setRenderSlotssetRenderSlotssetRenderSlots')
+        return this
+    }
 
     // /**
     //  * @desc 设置事件

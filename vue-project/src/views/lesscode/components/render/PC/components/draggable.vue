@@ -8,10 +8,10 @@ const props = defineProps({
     required: false,
     default: null
   },
-  componentData: {
-    type: Object,
-    required: true
-  },
+  // componentData: {
+  //   type: Object,
+  //   required: true
+  // },
   ghostClass: String,
   group: {
     type: Object,
@@ -55,7 +55,7 @@ const handleChange = () => { }
         v-bind="$attrs">
        <template #item="{ element }">
           <div>
-              <slot :propsSlots="element" />
+             {{element}}
           </div>
       </template>
     </draggable>
