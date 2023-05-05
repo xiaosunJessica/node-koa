@@ -1,6 +1,6 @@
 <template>
     <div
-      ref="componentRoot"
+      ref="componentRootRef"
       :class="{
           [$style['component']]: true,
           [$style['precent-width']]: state.fixPercentStyleWidth,
@@ -28,9 +28,10 @@
 
 
 <script setup lang="ts">
-import { reactive  } from 'vue';
+import { reactive, onMounted, ref  } from 'vue';
 import RenderComponent from './render-component.vue'
-defineProps({
+const componentRootRef = ref()
+const props = defineProps({
   componentData: {
     type: Object,
     required: true
@@ -40,6 +41,7 @@ defineProps({
     default: false
   }
 })
+
 
 
 const safeStyles = {
@@ -130,6 +132,10 @@ const handleClick = () => {}
 const handleDBClick = () => {}
 
 const handleShowContextmenu = () => {}
+
+onMounted(() => {
+  props.componentData.mounted(componentRootRef.value)
+})
 
 </script>
 <style lang="scss" module>

@@ -25,7 +25,15 @@
             <div
                 :class="$style['button']"
                 @click="handleSaveTemplate">
-                <i class="bk-drag-icon bk-drag-templateline" :v-bk-tooltips.top-start="'存为模板'" />
+                <el-tooltip
+                  class="box-item"
+                  effect="dark"
+                  content="存为模板"
+                  placement="top-start"
+                >
+                  <el-icon><House /></el-icon>
+                </el-tooltip>
+                <!-- <i class="bk-drag-icon bk-drag-templateline" :v-bk-tooltips.top-start="'存为模板'" /> -->
             </div>
             <div
                 v-if="activeComponentData.parentNode && !activeComponentData.parentNode.root"
@@ -37,12 +45,27 @@
                 v-if="activeComponentData.componentId && !activeComponentData.isInteractiveComponent"
                 :class="$style['button']"
                 @click="handleCopyPaste">
-                <i class="bk-drag-icon  bk-drag-copy" :v-bk-tooltips.top-start="'复制并粘贴到当前元素后面'" />
+                 <el-tooltip
+                    class="box-item"
+                    effect="dark"
+                    content="复制并粘贴到当前元素后面"
+                    placement="top-start"
+                  >
+                  <el-icon><DocumentCopy /></el-icon>
+                </el-tooltip>
+                <!-- <i class="bk-drag-icon  bk-drag-copy" :v-bk-tooltips.top-start="'复制并粘贴到当前元素后面'" /> -->
             </div>
             <div
                 :class="$style['button']"
                 @click="handleRemove">
-                <i class="bk-drag-icon bk-drag-delet" :v-bk-tooltips.top-start="'删除'" />
+                 <el-tooltip
+                    class="box-item"
+                    effect="dark"
+                    content="删除"
+                    placement="top-start"
+                  >
+                  <el-icon><Delete /></el-icon>
+                </el-tooltip>
             </div>
         </div>
     </div>

@@ -18,6 +18,7 @@ export default function (callbak) {
             return
         }
         componentData.value = event.target
+        console.log(event.target, 'event.targetevent.target')
         callbak(event.target)
         hoverResizeObserver.observe($drawTarget)
     }
