@@ -62,8 +62,6 @@ export default function (node) {
         material,
         renderPerms
     } = node
-    console.log('toJSON-------')
-
     const renderSlotsJSON = Object.keys(renderSlots).reduce((result, slotName) => {
         const curSlot = renderSlots[slotName]
         if (Array.isArray(curSlot)) {

@@ -35,8 +35,8 @@ import {
 
 import transformProps from './helper/transform-props.js'
 import transformSlots from './helper/transform-slots'
-// import findParent from './helper/find-parent'
-// import flatneChildren from './helper/flatne-chilren'
+import findParent from './helper/find-parent'
+import flatneChildren from './helper/flatne-chilren'
 // import {
 //     findRelatedVariableFromRenderProps,
 //     findRelatedVariableFromRenderDirective,
@@ -51,7 +51,7 @@ import transformSlots from './helper/transform-slots'
 // import validator from './helper/validator'
 // import { toHyphenate } from './helper/utils'
 
-// import getRoot from './static/get-root'
+import getRoot from './static/get-root'
 import getMaterial from './static/get-material'
 
 import isLayoutType from './static/is-layout-type'
@@ -69,19 +69,22 @@ export default class Node {
   renderSlots: any
   _isMounted: boolean
   renderSlotKey: any
+  isActived: boolean
     constructor ({
         name = '',
         type = '',
         cmpt = '',
         props = {},
         // directives = [],
-        slots = {},
+        slots = {
+          default: []
+        },
         renderStyles = {},
         renderProps = {}
     }) {
         const uid = uuid()
         // // 只有刚被拖入才会是 false，画布重新渲染（页面刷新）一直是 true
-        // this._isMounted = false
+        this._isMounted = false
         // // 组件被渲染时对应画布中的根原素
         this.$elm = null
 
@@ -107,7 +110,7 @@ export default class Node {
         // // 自定义组件
         // this.isCustomComponent = false
         // // 组件被选中
-        // this.isActived = false
+        this.isActived = false
 
         // // 权限中心操作权限
         // this.renderPerms = []
@@ -116,9 +119,9 @@ export default class Node {
     //  * @desc 是否是根节点
     //  * @returns { Boolean }
     //  */
-    // get root () {
-    //     return this.type === 'root'
-    // }
+    get root () {
+        return this.type === 'root'
+    }
     // /**
     //  * @desc 组件 material 配置
     //  * @returns { Object }
@@ -245,17 +248,17 @@ export default class Node {
     //  * @desc 父节点
     //  * @returns { Node }
     //  */
-    // get parentNode () {
-    //     const root = getRoot()
-    //     return findParent(root, this.componentId)
-    // }
+    get parentNode () {
+        const root = getRoot()
+        return findParent(root, this.componentId)
+    }
     // /**
     //  * @desc 子节点节点列表，将所有 slot 展开合并
     //  * @returns { Array  }
     //  */
-    // get children () {
-    //     return flatneChildren(this)
-    // }
+    get children () {
+        return flatneChildren(this)
+    }
     // /**
     //  * @desc 关联变量
     //  * @returns { Object }

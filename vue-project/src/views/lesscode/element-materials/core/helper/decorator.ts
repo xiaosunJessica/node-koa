@@ -37,7 +37,6 @@ export function notify (target: any, name: any, descriptor: any) {
             triggerEventListener('update', event)
         }
 
-        console.log('name-----namemmmm')
         if (name === 'toggleInteractive') {
             event.interactiveShow = this.interactiveShow
             triggerEventListener('toggleInteractive', event)

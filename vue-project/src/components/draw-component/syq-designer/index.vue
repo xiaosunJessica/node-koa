@@ -24,7 +24,6 @@ function bgClass() {
 }
 
 const reloadProcess = debounce(async function (setting: any, oldSetting: any) {
-  console.log('---reloadoooooo')
   const modelerModules = moduleAndExtensions(setting);
 
   await nextTick();

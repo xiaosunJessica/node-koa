@@ -50,7 +50,6 @@ const createNodeFromData = (data) => {
  * @param { String } slot
  */
 const traverse = (parentNode, childDataList, slot) => {
-    console.log('parse-dataparse-dataparse-dataparse-data')
     childDataList.forEach(childData => {
         const childNode = createNodeFromData(childData)
 

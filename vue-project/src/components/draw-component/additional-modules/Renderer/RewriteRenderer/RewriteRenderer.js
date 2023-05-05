@@ -647,7 +647,6 @@ class RewriteRenderer extends BaseRenderer {
         }
       }
 
-      console.log("pathData", pathData);
       return pathData;
     }
 

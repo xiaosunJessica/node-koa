@@ -46,7 +46,6 @@ export default function (designerDom: any, moduleAndExtensions: any, context?: a
 
   // 功能测试部分，可删除
   modeler.on("commandStack.elements.create.preExecute", (event: any) => {
-    console.log("create", event);
     const {
       context: { elements }
     } = event;
@@ -56,7 +55,6 @@ export default function (designerDom: any, moduleAndExtensions: any, context?: a
     return event;
   });
   modeler.on("commandStack.shape.replace.preExecute", (event: any) => {
-    console.log("replace", event);
     const {
       context: { newShape, newData }
     } = event;
@@ -65,8 +63,6 @@ export default function (designerDom: any, moduleAndExtensions: any, context?: a
     }
     return event;
   });
-
-  console.log(modeler);
 
   return modeler;
 }

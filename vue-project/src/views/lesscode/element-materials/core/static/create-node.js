@@ -5,7 +5,6 @@ import Node from '../Node'
 
 export const createNode = type => {
     const material = getMaterial(type)
-    console.log(material, 'createNodecreateNodematerialmaterial')
     if (!material) {
         throw new Error(`不支持的组件 * ${type} * `)
     }
@@ -34,7 +33,6 @@ const parseTemplateTree = (templateRoot) => {
  * @returns { Node }
  */
 export default function (elementType, parseSlot = true) {
-    console.log('createNodecreateNodecreateNode')
     const node = createNode(elementType)
     if (!node) {
         return node

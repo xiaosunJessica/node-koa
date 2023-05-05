@@ -11,7 +11,6 @@ export default function (callbak) {
     let $drawTarget = null
 
     const activeCallback = (event) => {
-        console.log('event00000', event)
         if (event.target.componentId === componentData.value.componentId) {
             return
         }
@@ -24,7 +23,6 @@ export default function (callbak) {
     }
 
     const updateCallbak = _.throttle(() => {
-        console.log('updateCallbakupdateCallbak', componentData.value)
         if (!componentData.value.componentId) {
             return
         }

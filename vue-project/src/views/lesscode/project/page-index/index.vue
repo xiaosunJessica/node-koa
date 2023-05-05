@@ -27,9 +27,7 @@ const handleStartGuide = () => {
 
 const fetchData = async () => {
   const [pageDetail] = await Promise.all([pageStore.detail({pageId})])
-  console.log('------父')
 
-  console.log(pageDetail, 'pageDetailpageDetail')
   pageStore.setPageDetail(pageDetail)
   LC.parseData(pageDetail.content)
 }

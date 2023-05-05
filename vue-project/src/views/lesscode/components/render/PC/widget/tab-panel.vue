@@ -38,7 +38,6 @@
         created () {
             const updateCallback = ({ target }) => {
                 if (target.componentId === this.componentData.componentId) {
-                    console.log('update tab', this.componentData.componentId)
                     this.$forceUpdate()
                 }
             }

@@ -8,7 +8,6 @@ const toolkit = [
   'select',
   'setdefault'
 ]
-console.log(props.list, 'aaaaa', props.list.length)
 function handleClickItem(layout: any) {
   if (layout.disabled || !toolkit.includes('select')) {
     return

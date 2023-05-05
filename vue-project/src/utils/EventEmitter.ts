@@ -36,7 +36,6 @@ class EventEmitter {
   }
 
   static on(type: any, fn: any, context?: any) {
-    console.log("0000type------");
     return EventEmitter.addListener(type, fn, context);
   }
 

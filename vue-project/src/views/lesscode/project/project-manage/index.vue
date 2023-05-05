@@ -83,7 +83,6 @@ const handleCreateConfirm = async () => {
   data.layouts = layouts
   const res = await projectStore.create(data)
   state.dialog.create.visible = false
-  console.log(res, 'resresres')
 }
 
 const getDefaultLayout = async () => {

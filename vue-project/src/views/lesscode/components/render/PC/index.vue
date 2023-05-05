@@ -3,8 +3,9 @@ import { onMounted, ref, reactive } from 'vue';
 import Draggable from './components/draggable.vue';
 import LC from '../../../element-materials/core'
 import LesscodeTools from './tools/lesscode-tool/index.vue'
+console.log(LC.getRoot().slot, 'LC.getRoot()LC.getRoot()')
 const state = reactive({
-  componentData: LC.getRoot() || { "componentId": "root-79620", "type": "root", "name": "root", "complex": false, "custom": false, "interactive": false, "renderDirectives": [], "renderEvents": {}, "renderProps": {}, "renderSlots": { "default": [] }, "renderStyles": {}, "renderAlign": {}, "renderPerms": [] },
+  componentData: LC.getRoot(),
   list: []
 })
 const rootRef = ref()
@@ -19,13 +20,14 @@ const handleMouseleave = () => {
 const handleShowContextmenu = () => {}
 
 onMounted(() => {
-  // componentData.value.mounted(rootRef)
+  state.componentData.mounted(rootRef.value)
   LC._mounted()
 })
 </script>
 
 <template>
    <layout>
+      <div>{{ state.componentData.renderSlots }}</div>
       <div
           id="drawTarget"
           ref="rootRef"
@@ -39,7 +41,7 @@ onMounted(() => {
             ref="dragArea"
             class="target-drag-area"
             :class="[$style['drag-area']]"
-            :list="state.list"
+            :list="state.componentData.renderSlots.default"
             :group="{
                 name: 'layout',
                 pull: true,

@@ -12,7 +12,6 @@ const state = reactive<{
 
 onBeforeMount(() => {
   EventEmitter.on("modeler-init", (modeler: any) => {
-    console.log(modeler, '----mode00000')
     try {
       state._canvas = modeler.get("canvas");
       state.currentScale = state._canvas.zoom();
